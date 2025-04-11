@@ -81,40 +81,132 @@ public class Day3 {
 
         //Calculator
 
-        Scanner in =  new Scanner(System.in);
+        // Scanner in =  new Scanner(System.in);
 
-        System.out.println("Enter first number: ");
-        int a= in.nextInt();
+        // System.out.println("Enter first number: ");
+        // int a= in.nextInt();
 
-        System.out.println("Enter Second number: ");
-        int b=in.nextInt();
+        // System.out.println("Enter Second number: ");
+        // int b=in.nextInt();
 
-        System.out.println("Enter operator: ");
-        char c=in.next().charAt(0);
+        // System.out.println("Enter operator: ");
+        // char c=in.next().charAt(0);
 
 
-        switch (c) {
-            case '+':
-             System.out.println("Addition: "+(a+b));
-            break;
+        // switch (c) {
+        //     case '+':
+        //      System.out.println("Addition: "+(a+b));
+        //     break;
 
-            case '-':
-             System.out.println("Addition: "+(a-b));
-            break;
+        //     case '-':
+        //      System.out.println("Addition: "+(a-b));
+        //     break;
 
-            case '*':
-             System.out.println("Addition: "+(a*b));
-            break;
+        //     case '*':
+        //      System.out.println("Addition: "+(a*b));
+        //     break;
 
-            case '/':
-             System.out.println("Addition: "+(a/b));
-            break;
+        //     case '/':
+        //      System.out.println("Addition: "+(a/b));
+        //     break;
         
-            default:
-            System.out.println("default input");
-                break;
+        //     default:
+        //     System.out.println("default input");
+        //         break;
+        // }
+
+
+
+        //Print number is string
+
+        // Scanner in= new Scanner(System.in);
+
+        // System.out.println("Enter a Number:");
+
+        // int x= in.nextInt();
+
+        // switch (x) {
+        //     case 0:
+        //     System.out.println("Zero");
+        //     break;
+
+        //     case 1:
+        //     System.out.println("One");
+        //     break;
+
+
+        //     case 2:
+        //     System.out.println("Two");
+        //     break;
+
+
+        //     case 3:
+        //     System.out.println("Three");
+        //     break;
+
+
+        //     case 4:
+        //     System.out.println("Four");
+        //     break;
+
+        //     case 5:
+        //     System.out.println("Five");
+        //     break;
+
+        //     case 6:
+        //     System.out.println("Six");
+        //     break;
+
+        //     case 7:
+        //     System.out.println("Seven");
+        //     break;
+
+        //     case 8:
+        //     System.out.println("Eight");
+        //     break;
+
+        //     case 9:
+        //     System.out.println("NIne");
+        //     break;
+          
+          
+        //     default:
+        //     System.out.println("Invalid input");
+                
+        // }
+
+
+        // for(int i=0;i<5;i++){
+        //     System.out.println("Hello");
+        //     System.out.println(i*2);
+
+        // }
+
+        // int a=2;
+        // while(a<5){
+        //     System.out.println("kya aayega");
+        //     a++;
+        // }
+
+        Scanner in = new Scanner(System.in);
+
+        int x= in.nextInt();
+
+        //print the value using for loop
+
+        for(int i=1;i<=x;i++)
+        {
+            System.out.println(i);
         }
 
+        //print the value using while loop
+
+        int i=1;
+        while(i<=x){
+            System.out.println(i);
+            i++;
+        }
+        
 
 
 
