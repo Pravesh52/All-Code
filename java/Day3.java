@@ -411,19 +411,94 @@ public class Day3 {
 
     //12.Find factorial of a number using for loop
 
-    Scanner in = new Scanner(System.in);
+    // Scanner in = new Scanner(System.in);
 
 
-     System.out.println("input The number: ");
+    //  System.out.println("input The number: ");
 
-      int n=in.nextInt();
-      int Fact=1;
+    //   int n=in.nextInt();
+    //   int Fact=1;
 
-      for(int i=1;i<=n;i++)
-      {
-        Fact = Fact*i;
-      }
-      System.out.println(Fact);
+    //   for(int i=1;i<=n;i++)
+    //   {
+    //     Fact = Fact*i;
+    //   }
+    //   System.out.println(Fact);
+
+
+
+    //13.Write a program to reverse a number using while loop
+
+    // Scanner in=new Scanner(System.in);
+
+    // System.out.println("Enter the number: ");
+
+    // int n=in.nextInt();
+
+    // int r=0;
+
+    // while(n!=0){
+    //     r=r*10;
+    //     r=r+(n%10);
+    //     n=n/10;
+    // }
+    // System.out.println("reverse number is: "+(r));
+
+
+    //14. Check whether a number is prime or not using loop and if-else
+
+//    Scanner in=new Scanner(System.in);
+//    System.out.println("Enter the number to check the prime or not: ");
+//    int n=in.nextInt();
+//     int i=2;
+  // for(i=2;i<n;i++){
+    // if(n%i==0){
+    //     System.out.println("NOt a Prime Number");
+    // }else{
+    //     System.out.println("prime number");
+    // }
+  // }
+
+
+
+
+  //15. Use switch-case to build a simple calculator (Add, Sub, Mul, Div)
+
+
+  Scanner in=new Scanner(System.in);
+   System.out.println("Enter the 1st number : ");
+   int a=in.nextInt();
+
+   System.out.println("Enter the 2nd number : ");
+   int b=in.nextInt();
+
+   System.out.println("Choose the operator : ");
+
+   char c=in.next().charAt(0);
+
+   switch (c) {
+        case '+':
+         System.out.println("Addition: "+(a+b));
+        break;
+
+        case '-':
+         System.out.println("Addition: "+(a-b));
+        break;
+
+        case '*':
+         System.out.println("Addition: "+(a*b));
+        break;
+
+        case '/':
+         System.out.println("Addition: "+(a/b));
+        break;
+    
+        default:
+        System.out.println("default input");
+            break;
+    }
+
+   
 
 
 
