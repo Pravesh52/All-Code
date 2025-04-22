@@ -50,24 +50,63 @@ public class Day8 {
     // }
 
     //string palindrone
-    String str="racecar";
-    int l=0,r=str.length()-1;
-    boolean isPalindrome=true;
+    // String str="racecar";
+    // int l=0,r=str.length()-1;
+    // boolean isPalindrome=true;
 
-    while(l<r){
-        if(str.charAt(l) != str.charAt(r)){
-            isPalindrome=false;
-            break;
+    // while(l<r){
+    //     if(str.charAt(l) != str.charAt(r)){
+    //         isPalindrome=false;
+    //         break;
+    //     }
+    //     l++;
+    //     r--;
+
+    // }
+    // if(isPalindrome){
+    //     System.out.println("Palindrone");
+    // }else{
+    //     System.out.println("Not a Palindrone");
+    // }
+
+
+
+       // count given string character frequency
+    //    String str="racecar";
+    //    char arr[]=str.toCharArray();
+
+    //    for(int i=0;i<str.length();i++){
+    //     System.out.print(arr[i]);
+    //    }
+
+    //    String target="e";
+    //    int count=0;
+
+    //    for(int i=0;i<str.length();i++){
+    //     if(str.charAt(i)== target.charAt(0)){
+    //         count++;
+    //     }
+    //    }
+    //    System.out.println(count);
+
+    String str="racecarjhdgahaaha";
+    int count=0;
+    for(int i=0;i<str.length();i++)
+    {
+        switch(str.charAt(i)){
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                        count++;
         }
-        l++;
-        r--;
+    }
+    System.out.println(count);
+    
 
-    }
-    if(isPalindrome){
-        System.out.println("Palindrone");
-    }else{
-        System.out.println("Not a Palindrone");
-    }
+
+
 
         
     }
