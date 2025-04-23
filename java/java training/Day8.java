@@ -104,10 +104,5 @@ public class Day8 {
     }
     System.out.println(count);
     
-
-
-
-
-        
-    }
+ }
 }
