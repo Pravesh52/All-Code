@@ -125,12 +125,16 @@ public class Day10 {
 
     //Instance variables
 
-    int e=20;
-    public static void main(String[] args) {
-        Day10 obj=new Day10();
-        System.out.println(obj.e);
-    }
+    // int e=20;
+    // public static void main(String[] args) {
+    //     Day10 obj=new Day10();
+    //     System.out.println(obj.e);
+    // }
      
+
+
+
+    
 
 
 
