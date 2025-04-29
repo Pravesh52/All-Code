@@ -189,8 +189,42 @@ public class Basic {
                 // }
                 
 
-                //11.
+                //11.Write a Java program to check even or odd.
 
+                // Scanner in=new Scanner(System.in);
+                // System.out.println("Enter the no. to check even odd:");
+                // int n=in.nextInt();
+
+                // if(n%2==0){
+                //   System.out.println("Even");
+                // }else{
+                //   System.out.println("odd");
+                // }
+
+
+                //12.Write a Java program to check vowel or consonant.
+                // Scanner in=new Scanner(System.in);
+                //  System.out.println("Enter the no. to check vowel and consonent:");
+                //  char c=in.next().charAt(0);
+                 
+                //  if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'){
+                //   System.out.println("vowel");
+                //  }else{
+                //   System.out.println("consonent");
+                //  }
+
+
+                //13.Write a Java program to find sum of natural numbers.
+                Scanner in=new Scanner(System.in);
+                System.out.println("Enter the no. to sum natural no.");
+                int n=in.nextInt();
+                int sum = 0;
+                for(int i=1;i<=n;i++)
+                {
+                   sum=sum+i;
+                   
+                }
+                System.out.println(sum);
 
               }
     

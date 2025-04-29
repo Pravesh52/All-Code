@@ -24,5 +24,10 @@ public class Day11 {
     //     }
     //}
 
+
+    //Binary search
+
+    
+
     
 }
