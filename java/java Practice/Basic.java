@@ -215,16 +215,44 @@ public class Basic {
 
 
                 //13.Write a Java program to find sum of natural numbers.
-                Scanner in=new Scanner(System.in);
-                System.out.println("Enter the no. to sum natural no.");
-                int n=in.nextInt();
-                int sum = 0;
-                for(int i=1;i<=n;i++)
-                {
-                   sum=sum+i;
+                // Scanner in=new Scanner(System.in);
+                // System.out.println("Enter the no. to sum natural no.");
+                // int n=in.nextInt();
+                // int sum = 0;
+                // for(int i=1;i<=n;i++)
+                // {
+                //    sum=sum+i;
                    
-                }
-                System.out.println(sum);
+                // }
+                // System.out.println(sum);
+
+                //14. Write a Java program to find factorial of a number.
+
+                // Scanner in=new Scanner(System.in);
+                // System.out.println("Enter the no.to find the factorial: ");
+                // int n=in.nextInt();
+
+                // int fact=1;
+
+                // for(int i=1;i<=n;i++){
+                //   fact=fact*i;
+                // }
+                // System.out.println("Factorial no. "+fact);
+
+                 //15. Write a Java program to generate multiplication table.
+
+                // Scanner in=new Scanner(System.in);
+                // System.out.println("Enter the number: ");
+                // int n=in.nextInt();
+
+                // for(int i=1;i<=10;i++){
+                // //System.out.println(n+"*"+i+"="+n*+i);
+                // }
+
+                //16.Write a Java program to display Fibonacci series.
+
+                
+
 
               }
     

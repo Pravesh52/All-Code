@@ -92,7 +92,7 @@ public class BankAccount {
             balance -= amount;
             System.out.println("Withdrawn: " + amount);
         } else {
-            System.out.println("Invalid");
+            System.out.println("Invalid  ");
         }
     }
 
