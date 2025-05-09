@@ -2,6 +2,8 @@
 // Date: 07/05/2025
 // Day: Wednesday
 
+//write in ankit pal, am not present the college then send the ankit pal 
+
 class Animal{
     void eat(){
         System.out.println("I am eating");
