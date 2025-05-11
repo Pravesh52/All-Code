@@ -5,7 +5,7 @@
 
 
 
-import java_training.Test;
+//import java_training.Test;
 
 abstract class Payment{    // abstract class
     abstract void pay(int a); //abstract method
@@ -36,9 +36,9 @@ public class Day17 {
         obj1.pay(5000);
         obj1.print();
 
-        Test t=new Test();
-        System.out.println(t.x);
-        t.print();
+        // Test t=new Test();
+        // System.out.println(t.x);
+        // t.print();
     }
 }
 
