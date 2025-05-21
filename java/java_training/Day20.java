@@ -17,12 +17,19 @@ public class Day20 {
     //     }
     //     newStr.append(str.charAt(str.length()-1)).append(count);
     //     System.out.println(newStr);
-    Human obj = new Human();
-     obj.run();
-     obj.walk();
+    // Human obj = new Human();
+    //  obj.run();
+    //  obj.walk();
 
-     Demo obj1 = new Demo();
-     obj1.display();
+    //  Demo obj1 = new Demo();
+    //  obj1.display();
+
+    //  Dog obj2 = new Dog();
+    //  obj2.makeSound();
+
+        Circle obj3 = new Circle();
+        double result = obj3.area();
+        System.out.println(result);
      }  
 } 
 
@@ -74,3 +81,27 @@ Each should have a method: walk() and run() respectively.
  Then, create a class Dog that implements Animal and overrides
 makeSound() to print "Bark".In the main method, use the interface
  reference to call the method from Dog. */
+
+ interface Animal{
+    void makeSound();
+ }
+ class Dog implements Animal{
+    public void makeSound(){
+        System.out.println("Bark....");
+    }
+ }
+
+
+ /*Q4. Create an interface Shape with a method area().
+ Then, create a class Circle that implements Shape and
+ calculates the area using radius = 5. Print the area 
+ in the main method */
+
+ interface Shape{
+    double area();
+ }
+ class Circle implements Shape{
+    public double area(){
+        return 3.14*5*5;
+    }
+ }
