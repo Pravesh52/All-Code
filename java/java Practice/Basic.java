@@ -250,8 +250,86 @@ public class Basic {
                 // }
 
                 //16.Write a Java program to display Fibonacci series.
+                // Scanner sc= new Scanner(System.in);
+                // System.out.print("Enter the no. to find fibonacci series: ");
+                // int n=sc.nextInt();
+
+                // int a=0;
+                // int b=1;
+                // int c = 0;
+
+                // System.out.print(a+" ");
+                // System.out.print(b+" ");
+                // for(int i=2;i<n;i++)
+                // {
+                //   c=a+b;
+                //   System.out.print(c+" ");
+                //   a=b;
+                //   b=c;
+                // }
+                // // System.out.println("Fibonacci series: "+c);
+                
+
+               //17. Write a Java program to check prime number.
+              //  Scanner sc=new Scanner(System.in);
+              //  System.out.println("Enter the no. to check prime or not: ");
+              //  int n=sc.nextInt();
+              //  boolean istrue=true;
+              //  for(int i=2;i<=n/2;i++)
+              //  {
+              //   if(n%i==0){
+              //     istrue=false;
+              //     break;
+              //   }
+              //  }
+              //  if(istrue)
+              //  {
+              //   System.out.println("Prime no. ");
+              //  }else{
+              //   System.out.println("Not Prime no. ");
+              //  }
+
+
+               /*18. Write a Java program to find all
+                prime numbers between two intervals.*/
+
+                // Scanner sc=new Scanner(System.in);
+                // System.out.println("Enter the first interval: ");
+                // int a=sc.nextInt();
+                // System.out.println("Enter the second interval: ");
+                // int b=sc.nextInt();
+                // System.out.println("Result: ");
+                // int count=0;
+                // for(int j=a; j<=b; j++){
+                //   boolean istrue=true;
+                //   int n = j;
+                //  for(int i=2;i<=n/2;i++)
+                //  {
+                //   if(n%i==0){
+                //     istrue=false;
+                //     break;
+                //   }
+                // }
+                // if(istrue)
+                // {
+                //   System.out.println(n);
+                //   count++;
+                //  }
+                // }
+                // System.out.println("First and second interval of middle Prime no.: "+count);
+
+                //19. Write a Java program to find GCD of two numbers.
+
+                Scanner sc=new Scanner(System.in);
+                System.out.println("Enter first no.: ");
+                int a=sc.nextInt();
+
+                System.out.println("Enter second no.: ");
+                int b=sc.nextInt();
 
                 
+
+
 
 
               }
