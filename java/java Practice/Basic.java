@@ -327,10 +327,43 @@ public class Basic {
                 System.out.println("Enter second no.: ");
                 int b=sc.nextInt();
 
+                while(b!=0)
+                {
+                  int temp=b;
+                  b=a%b;
+                  a=temp;
+                }
+                int GCD = a;
+                System.out.println("GCD of two values: "+GCD);
+
+
+
+
+
+                //20 Write a Java program to find hcf and LCM of two numbers.
+              //   Scanner sc=new Scanner(System.in);
+              //   System.out.println("Enter first no.: ");
+              //   int a=sc.nextInt();
+
+              //   System.out.println("Enter first no.: ");
+              //   int b=sc.nextInt();
+
+              //   int x=a;
+              //   int y=b;
+              //   int temp;
+
+              //   while (b!=0)
+              //   {
+              //     temp=b;
+              //     b=a%b;
+              //     a=temp;
+              //   }
+              //   int hcf=a;
                 
+              //  int  lcm=(x*y)/hcf;
 
-
-
+              //  System.out.println("Hcf: "+hcf);
+              //  System.out.println("Lcm: "+lcm);
 
               }
     

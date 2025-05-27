@@ -59,8 +59,7 @@ void sum()
 }
 void NodebeforeFirst(int val)
 {
-  temp=(node*
-  ) malloc(sizeof(node));
+   temp=(node*) malloc(sizeof(node));
   temp->data=val;
   temp->next=first;
      first=temp;
