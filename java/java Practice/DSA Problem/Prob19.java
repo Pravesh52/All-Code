@@ -12,7 +12,7 @@ import java.lang.Math;
 public class Prob19 {
     public static void main(String[] args) {
         
-        int n=3;
+        int n=10;
         int count=0;
         int sum=0;
         
@@ -34,7 +34,9 @@ public class Prob19 {
        }
        System.out.println("Square of sum= "+ans);
 
-       
+       int difference=sumofsquare-ans;
+       System.out.println("difference: "+difference);
+
 
 
     }
