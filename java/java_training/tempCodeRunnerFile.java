@@ -1,4 +1,2 @@
-list.add("Pravesh");
-    list.add("om");
-    list.add("Ankit");
-    list.add("as");
+file("file A");
+        // file("file B");
