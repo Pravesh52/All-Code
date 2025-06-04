@@ -41,7 +41,23 @@
 // using Thread 
 
 class downloadFile extends Thread{
-    
+    String filename;
+    //constructor
+    downloadFile(String filename){
+       this.filename=filename;
+    }
+    public void run(){
+        for(int i=0;i<=5;i++)
+        {
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                
+            }
+            System.out.println(filename+" downloading..... "+(i*20)+"%");
+        }
+        System.out.println(filename+" download successful");
+    }
 }
 
 
@@ -59,7 +75,14 @@ public class Day27 {
 
 
         //without threading used code
-        downloadFile.file("File A");
-        downloadFile.file("File B");
+        // downloadFile.file("File A");
+        // downloadFile.file("File B");
+
+
+
+        downloadFile t1= new downloadFile("file A");
+        downloadFile t2= new downloadFile("file B");
+        t1.start();
+        t2.start();
     }    
 }
