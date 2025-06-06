@@ -15,24 +15,24 @@ public class Prob6 {
     public static void main(String[] args) {
         int arr[]={10, 3, 5, 6, 2};
 
-        int result=new int[arr.length];
+        int res[]=new int[arr.length];
 
         for(int i=0;i<arr.length;i++){
               int temp = 1;
             for(int j=0;j<arr.length;j++)
             {
-                    if(i==j)
-                    continue;
+                    if(i!=j)
+                    //continue;
 
                     temp = temp*arr[j];
             }
             
-           result[i] = temp;
+           res[i] = temp;
             
         }
-        for(int i=0;i<result;i++)
+        for(int i=0;i<res.length;i++)
         {
-            System.out.println(result[i]);
+            System.out.print(res[i]+" ");
         }
 
         
