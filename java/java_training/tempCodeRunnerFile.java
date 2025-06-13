@@ -1,2 +1,2 @@
-file("file A");
-        // file("file B");
+
+            System.out.println("not anagrams");
