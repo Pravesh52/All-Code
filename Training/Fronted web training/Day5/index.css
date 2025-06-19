@@ -1,0 +1,29 @@
+#body{
+    
+}
+
+#parent{
+   height: 300px;
+   width: 250px;
+   border-radius: 11px;
+   background-color: whitesmoke; 
+}
+#child b{
+    height: 50%;
+    width: 100%;
+   border-radius: 100px; 
+}
+#child a{
+    height: 50%;
+    width: 100%;
+}
+
+#child-b img{
+    height: 50%;
+    width: 100%;
+
+}
+#child-a img{
+    height: 50%;
+    width: 100%;
+}

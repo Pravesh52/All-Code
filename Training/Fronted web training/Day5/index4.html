@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance & Productivity Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .app-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .finance-tracker { --accent-color: linear-gradient(45deg, #4CAF50, #45a049); }
+        .study-room { --accent-color: linear-gradient(45deg, #2196F3, #1976D2); }
+        .habit-tracker { --accent-color: linear-gradient(45deg, #FF9800, #F57C00); }
+        .todo-list { --accent-color: linear-gradient(45deg, #9C27B0, #7B1FA2); }
+        .email-organizer { --accent-color: linear-gradient(45deg, #F44336, #D32F2F); }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            margin-right: 20px;
+            background: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .app-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .app-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .app-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .demo-section {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .demo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .finance-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .expense-item:hover {
+            transform: translateX(5px);
+        }
+
+        .expense-category {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .food { background: #FF6B6B; }
+        .transport { background: #4ECDC4; }
+        .entertainment { background: #45B7D1; }
+        .shopping { background: #96CEB4; }
+
+        .expense-amount {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .budget-bar {
+            background: #f0f0f0;
+            border-radius: 8px;
+            height: 12px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .budget-fill {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 2s ease-out;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+        }
+
+        .timer-display {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2196F3;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .habit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .habit-item {
+            text-align: center;
+            padding: 20px 15px;
+            background: white;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .habit-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .habit-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .habit-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .habit-streak {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FF9800;
+        }
+
+        .goal-progress {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .goal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 8px;
+            height: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 2s ease-out;
+        }
+
+        .email-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .email-category {
+            text-align: center;
+            padding: 20px 15px;
+            background: white;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .email-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .category-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .apps-grid { grid-template-columns: 1fr; gap: 20px; }
+            .app-card { padding: 25px; }
+            .finance-demo { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape" style="top: 10%; left: 10%; font-size: 40px; animation-delay: 0s;">💰</div>
+        <div class="shape" style="top: 20%; right: 15%; font-size: 35px; animation-delay: 1s;">📚</div>
+        <div class="shape" style="bottom: 30%; left: 20%; font-size: 45px; animation-delay: 2s;">🎯</div>
+        <div class="shape" style="bottom: 10%; right: 10%; font-size: 38px; animation-delay: 3s;">📧</div>
+        <div class="shape" style="top: 50%; left: 5%; font-size: 42px; animation-delay: 4s;">⚡</div>
+        <div class="shape" style="top: 70%; right: 5%; font-size: 36px; animation-delay: 5s;">🏆</div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Personal Finance & Productivity</h1>
+            <p>Smart solutions for managing money, time, and achieving your goals</p>
+        </div>
+
+        <div class="apps-grid">
+            <!-- Finance Tracker -->
+            <div class="app-card finance-tracker">
+                <div class="app-header">
+                    <div class="app-icon">💰</div>
+                    <div>
+                        <div class="app-title">Smart Finance Tracker</div>
+                        <div class="app-subtitle">AI-Powered Budgeting</div>
+                    </div>
+                </div>
+                <div class="app-description">
+                    Track expenses, categorize spending, and get AI-powered budgeting suggestions. Visualize spending patterns and make informed financial decisions with intelligent recommendations.
+                </div>
+                <div class="demo-section">
+                    <div class="demo-title">Live Expense Tracking</div>
+                    <div class="finance-demo">
+                        <div>
+                            <div class="expense-item">
+                                <div class="expense-category">
+                                    <div class="category-dot food"></div>
+                                    <span>Lunch</span>
+                                </div>
+                                <div class="expense-amount">$12.50</div>
+                            </div>
+                            <div class="expense-item">
+                                <div class="expense-category">
+                                    <div class="category-dot transport"></div>
+                                    <span>Uber</span>
+                                </div>
+                                <div class="expense-amount">$8.75</div>
+                            </div>
+                            <div class="expense-item">
+                                <div class="expense-category">
+                                    <div class="category-dot entertainment"></div>
+                                    <span>Netflix</span>
+                                </div>
+                                <div class="expense-amount">$15.99</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="margin-bottom: 15px;">
+                                <strong>Monthly Budget: $500</strong>
+                                <div class="budget-bar">
+                                    <div class="budget-fill" style="width: 68%;"></div>
+                                </div>
+                                <small>$340 spent • $160 remaining</small>
+                            </div>
+                            <button class="btn btn-success" onclick="addExpense()">Add Expense</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Virtual Study Room -->
+            <div class="app-card study-room">
+                <div class="app-header">
+                    <div class="app-icon">📚</div>
+                    <div>
+                        <div class="app-title">Virtual Study Room</div>
+                        <div class="app-subtitle">Collaborative Focus Space</div>
+                    </div>
+                </div>
+                <div class="app-description">
+                    Create virtual study spaces with focus timers, collaboration tools, and resource sharing. Enhance productivity with break reminders and study session analytics.
+                </div>
+                <div class="demo-section">
+                    <div class="demo-title">Pomodoro Timer</div>
+                    <div class="timer-display" id="timer">25:00</div>
+                    <div class="timer-controls">
+                        <button class="btn btn-primary" onclick="startTimer()">Start</button>
+                        <button class="btn btn-warning" onclick="pauseTimer()">Pause</button>
+                        <button class="btn btn-success" onclick="resetTimer()">Reset</button>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <small>👥 3 study buddies online</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habit Tracker -->
+            <div class="app-card habit-tracker">
+                <div class="app-header">
+                    <div class="app-icon">🏆</div>
+                    <div>
+                        <div class="app-title">Gamified Habit Tracker</div>
+                        <div class="app-subtitle">Build Habits with Rewards</div>
+                    </div>
+                </div>
+                <div class="app-description">
+                    Encourage positive habits with gamification, badges, and progress tracking. Make habit-building fun and engaging with rewards and social features.
+                </div>
+                <div class="demo-section">
+                    <div class="demo-title">Your Habits</div>
+                    <div class="habit-grid">
+                        <div class="habit-item" onclick="updateHabit(this)">
+                            <div class="habit-icon">💧</div>
+                            <div class="habit-name">Drink Water</div>
+                            <div class="habit-streak">7 days</div>
+                        </div>
+                        <div class="habit-item" onclick="updateHabit(this)">
+                            <div class="habit-icon">🏃</div>
+                            <div class="habit-name">Exercise</div>
+                            <div class="habit-streak">12 days</div>
+                        </div>
+                        <div class="habit-item" onclick="updateHabit(this)">
+                            <div class="habit-icon">📖</div>
+                            <div class="habit-name">Read</div>
+                            <div class="habit-streak">5 days</div>
+                        </div>
+                        <div class="habit-item" onclick="updateHabit(this)">
+                            <div class="habit-icon">🧘</div>
+                            <div class="habit-name">Meditate</div>
+                            <div class="habit-streak">3 days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goal-Oriented To-Do -->
+            <div class="app-card todo-list">
+                <div class="app-header">
+                    <div class="app-icon">🎯</div>
+                    <div>
+                        <div class="app-title">Goal-Oriented To-Do</div>
+                        <div class="app-subtitle">Purpose-Driven Task Management</div>
+                    </div>
+                </div>
+                <div class="app-description">
+                    Connect daily tasks to long-term goals with progress insights. Motivate yourself by seeing how each task contributes to your bigger objectives.
+                </div>
+                <div class="demo-section">
+                    <div class="demo-title">Goal Progress</div>
+                    <div class="goal-progress">
+                        <div class="goal-title">🎓 Learn Web Development</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%; background: #9C27B0;"></div>
+                        </div>
+                        <small>15/20 tasks completed</small>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="goal-title">💪 Fitness Journey</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%; background: #FF9800;"></div>
+                        </div>
+                        <small>9/20 workouts done</small>
+                    </div>
+                    <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+                </div>
+            </div>
+
+            <!-- Email Organizer -->
+            <div class="app-card email-organizer">
+                <div class="app-header">
+                    <div class="app-icon">📧</div>
+                    <div>
+                        <div class="app-title">Smart Email Organizer</div>
+                        <div class="app-subtitle">AI-Powered Inbox Management</div>
+                    </div>
+                </div>
+                <div class="app-description">
+                    Automatically sort and categorize emails using NLP and machine learning. Prioritize important messages and reduce email overload with smart filtering.
+                </div>
+                <div class="demo-section">
+                    <div class="demo-title">Email Categories</div>
+                    <div class="email-categories">
+                        <div class="email-category">
+                            <div class="category-count">23</div>
+                            <div class="category-label">Important</div>
+                        </div>
+                        <div class="email-category">
+                            <div class="category-count">47</div>
+                            <div class="category-label">Work</div>
+                        </div>
+                        <div class="email-category">
+                            <div class="category-count">12</div>
+                            <div class="category-label">Personal</div>
+                        </div>
+                        <div class="email-category">
+                            <div class="category-count">156</div>
+                            <div class="category-label">Promotions</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button class="btn btn-primary" onclick="organizeEmails()">Organize Inbox</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Insights</h3>
+                <p>Smart recommendations and predictive analytics to optimize your finances and productivity</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Visual Analytics</h3>
+                <p>Beautiful charts and graphs to visualize your progress and identify patterns</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacy First</h3>
+                <p>Your data stays secure with end-to-end encryption and local storage options</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Cross-Platform</h3>
+                <p>Seamless sync across all your devices - desktop, mobile, and tablet</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timer functionality
+        let timerInterval;
+        let timeLeft = 25 * 60; // 25 minutes in seconds
+        let isRunning = false;
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        showNotification('Pomodoro completed! Time for a break! 🎉');
+                        timeLeft = 25 * 60;
+                        updateTimerDisplay();
+                    }
+                }, 1000);
+                showNotification('Timer started! Focus time! 🎯');
+            }
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                showNotification('Timer paused ⏸️');
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            timeLeft = 25 * 60;
+            updateTimerDisplay();
+            showNotification('Timer reset! 🔄');
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Habit tracking
+        function updateHabit(element) {
+            const streakElement = element.querySelector('.habit-streak');
+            const currentDays = parseInt(streakElement.textContent);
+            const newDays = currentDays + 1;
+            streakElement.textContent = `${newDays} days`;
+            
+            element.style.transform = 'scale(1.1)';
+            element.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            element.style.color = 'white';
+            
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+                element.style.background = 'white';
+                element.style.color = 'inherit';
+            }, 500);
+
+            showNotification(`Great job! ${newDays} day streak! 🔥`);
+        }
+
+        // Finance tracking
+        function addExpense() {
+            const expenses = ['Coffee $4.50', 'Gas $35.20', 'Groceries $67.80', 'Movie $12.00'];
+            const colors = ['food', 'transport', 'shopping', 'entertainment'];
+            const randomExpense = expenses[Math.floor(Math.random() * expenses.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            showNotification(`Added expense: ${randomExpense} 💰`);
+            
+            // Update budget bar
+            const budgetFill = document.querySelector('.budget-fill');
+            const currentWidth = parseInt(budgetFill.style.width);
+            const newWidth = Math.min(95, currentWidth + Math.floor(Math.random() * 10));
+            budgetFill.style.width = `${newWidth}%`;
+        }
+
+        // Goal management
+        function addTask() {
+            const tasks = [
+                'Complete JavaScript tutorial',
+                'Practice CSS Grid',
+                'Build a portfolio project',
+                '30-minute run',
+                'Read 10 pages'
+            ];
+            const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
+            showNotification(`Added task: ${randomTask} ✅`);
+            
+            // Update progress bars
+            const progressBars = document.querySelectorAll('.goal-progress .progress-fill');
+            progressBars.forEach(bar => {
+                const currentWidth = parseInt(bar.style.width);
+                const newWidth = Math.min(100, currentWidth + 5);
+                bar.style.width = `${newWidth}%`;
+            });
+        }
+
+        // Email organization
+        function organizeEmails() {
+            const categories = document.querySelectorAll('.category-count');
+            categories.forEach(count => {
+                const currentValue = parseInt(count.textContent);
+                const change = Math.floor(Math.random() * 20) - 10;
+                const newValue = Math.max(0, currentValue + change);
+                count.textContent = newValue;
+            });
+            showNotification('Inbox organized! 📧 Emails sorted by priority');
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                font-weight: 500;
+                animation: slideInRight 0.5s ease-out;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-out';
+                setTimeout(() => document.body.removeChild(notification), 500);
+            }, 4000);
+        }
+
+        // Add notification styles
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            // Animate progress bars
+            const progressBars = document.querySelectorAll('.progress-fill, .budget-fill');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.opacity = '1';
+                }, index * 300);
+            });
+
+            showNotification('Welcome to your productivity hub! 🚀');
+        });
+
+        // Add interactive card effects
+        document.querySelectorAll('.app-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        // You can optionally add interactivity here if desired
+        console.log(`Hovered on card: ${card.querySelector('.app-title')?.textContent}`);
+    });
+});
+
