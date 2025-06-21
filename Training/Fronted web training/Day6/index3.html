@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #body{
+
+        }
+        #parent{
+            height: 400px;
+            border: 2px solid red;
+        }
+        .one{
+            height: 80px;
+            width: 80px;
+            transition: 3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #parent:hover .one{
+            border-radius: 80%;
+            margin-left: 1440px;
+            transform: rotate(180deg);
+        }
+        #one{
+            height: 80px;
+            width: 80px;
+            transition: 3s;
+            background-color: red;
+            transition-timing-function: ease-in;
+            
+        }
+        #two{
+            height: 80px;
+            width: 80px;
+            transition: 3s;
+            background-color: yellow;
+            transition-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        #three{
+            height: 80px;
+            width: 80px;
+            transition: 3s;
+            background-color: pink;
+            transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+        }
+        #four{
+            height: 80px;
+            width: 80px;
+            transition: 3s;
+            background-color: green;
+            transition-timing-function:cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="one" class="one">Pravesh </div>
+        <div id="two" class="one">Adarsh</div>
+        <div id="three" class="one">Anand</div>
+        <div id="four" class="one">Disha</div>
+    </div>
+</body>
+</html>
