@@ -1,6 +1,5 @@
 //Remove duplicates from a string
 
-
 public class Prob23 {
     public static void main(String[] args) {
         String str = "Apple";
