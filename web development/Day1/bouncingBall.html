@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            background-color: aqua;
+        }
+        .ball{
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(red, yellow);
+            border-radius: 50%;
+            animation-name: jumpingBall;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        /*@keyframes jumpingBall{
+            0%{
+                transform: translateY(0vh);
+            }
+            50%{
+                transform: translateY(86vh) translateX(45vw) rotate(360deg);
+            }
+            100%{
+                transform: translateY(0vh) translateX(93vw);
+            }
+        }*/
+        @keyframes jumpingBall{
+            0%{
+                transform: translateY(85vh);
+            }
+            50%{
+                transform: translateY(0vh) translateX(45vw) rotate(360deg);
+            }
+            100%{
+                transform: translateY(85vh) translateX(93vw);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ball">
+            <img src="1.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
