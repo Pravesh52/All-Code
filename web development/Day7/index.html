@@ -86,15 +86,22 @@
 and map function return the index value*/
      
 
-let arr1=[1,2,3,4,5,6,7,8]
+let arr1=[1,2,3,4,5,5,6,7,8]
 
 // filter function used
 
-let value=arr1.filter(function(a,b,c)
+// let value=arr1.filter(function(a,b,c)
+// {
+//     return a%2==0
+// });
+// console.log(value);
+
+// find function of use arr no. find 
+let data1= arr1.find((a,b,c)=>
 {
-    return a%2==0
-});
-console.log(value);
+    return a==15;
+})
+console.log(data1);
 
 
 
