@@ -10,7 +10,7 @@ public class Prob21 {
 
         int sum=0,remainder,temp;
 
-        temp=num;
+        temp=num; 
 
         while(num!=0)
         {
