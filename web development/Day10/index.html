@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //TDZ (Temporal Dead Zone)
+        // The Temporal Dead Zone (TDZ) is the time
+        //  between when a variable is hoisted and when 
+        //  it is initialized. Variables declared with
+        //   let and const are hoisted, but they are not
+        //  accessible until the actual line of code where
+        //   they are initialized.If you try to use them before
+        //  initialization, you get a ReferenceError.
+
+        // sum()
+        // var sum=()=>
+        // {
+        //     console.log("Hii");
+        // }
+
+        //  let sum=()=>
+        // {
+        //     console.log("Hii");
+        // }
+        // sum()
+
+        // sum()
+        // let sum=()=>
+        // {
+        //     console.log("Hii");
+        // }
+
+        // let a=5
+        //  a=()=>{
+        //     console.log("hii");
+        // }
+        // a()
+        
+
+        // const a=5
+        //  a=()=>{
+        //     console.log("hii");
+        // }
+        // a()
+
+        //some function are used in js
+
+        // function sum(){
+        //     console.log("hii");
+        // }
+        // sum()
+
+        //pure and impure function
+        //pure function
+
+        // Always returns the same output for the same input.
+        // Does not change anything outside itself (no side effects).
+        // Pure Function
+            // function add(a, b) {
+            // return a + b;
+            // }
+
+            // console.log(add(2, 3)); 
+            // console.log(add(2, 3)); 
+
+            // //impure function
+
+            // let a=5
+            // function sum(){
+            //     a+=5
+            //     return a
+            // }
+            // console.log(sum()); 
+            // console.log(sum());
+
+
+            // {
+            //     let a=10
+            //     console.log(a);
+            // }
+            // console.log(a);
+        //in functional scope variable can not be accessed 
+        // outside the function block
+
+            function sum()
+            {
+                var a=5
+            }
+            console.log(a);
+
+
+    </script>
+</body>
+</html>
