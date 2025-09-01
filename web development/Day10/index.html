@@ -86,11 +86,82 @@
         //in functional scope variable can not be accessed 
         // outside the function block
 
-            function sum()
-            {
-                var a=5
+            // function sum()
+            // {
+            //     var a=5
+            // }
+            // console.log(a);
+
+            // let arr=[1,3,4,6,78,89]
+            // arr.push(11)
+            // console.log(arr);
+
+            // arr.pop()
+            // console.log(arr);
+
+            // arr.unshift(101)
+            // console.log(arr);
+
+            // arr.shift()
+            // console.log(arr);
+
+            //higher order function
+
+
+            //function greet(name) {
+                    // return "Hello, " + name;
+                    // }
+
+                    // function processUserInput(callback) {
+                    // let name = "Pravesh";
+                    // return callback(name);
+                    // }
+
+                    // console.log(processUserInput(greet));
+                    
+            //typeof uses              
+            // console.log(typeof(typeof(true)));
+            // console.log(typeof 42);          // "number"
+            // console.log(typeof "Hello");     // "string"
+            // console.log(typeof true);        // "boolean"
+            // console.log(typeof undefined);   // "undefined"
+            // console.log(typeof null);        // "object" (⚠️ special case, a known JS bug)
+            // console.log(typeof Symbol());    // "symbol"
+            // console.log(typeof 123n);        // "bigint"
+
+            // let user = {name: "Pravesh"};
+            // console.log(typeof user);        // "object"
+
+            // let arr = [1,2,3];
+            // console.log(typeof arr);         // "object" (arrays are objects)
+
+            let arr=[2,"hello",true]
+            let numbers = [];
+            let strings = [];
+            let booleans = [];
+
+            for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] === "number") {
+                numbers.push(arr[i]);
+            } else if (typeof arr[i] === "string") {
+                strings.push(arr[i]);
+            } else if (typeof arr[i] === "boolean") {
+                booleans.push(arr[i]);
             }
-            console.log(a);
+            }
+
+                console.log("Numbers:", numbers);   
+                console.log("Strings:", strings);  
+                console.log("Booleans:", booleans);
+
+
+
+
+                    
+
+
+        
+
 
 
     </script>
