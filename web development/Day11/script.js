@@ -55,3 +55,8 @@ let arr=[1,2,3,"hello","hii",true, false]
         console.log("Ankit");
         console.log("Pravesh")
       },1000)
+
+      
+
+
+      
