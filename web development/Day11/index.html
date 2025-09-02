@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      let arr=[1,2,3,"hello","hii",true, false]
+
+      function getString(i)
+      {
+        return typeof i=="string";
+      }
+
+      function getNumber(i)
+      {
+        return typeof i=="number";
+      }
+      function getboolean(i)
+      {
+        return typeof i=="boolean";
+      }
+
+      function getFun(arr,fn)
+      {
+        let res=[]
+        for(let i of arr)
+      {
+        if(fn(i))
+      {
+        res.push(i)
+      }
+      }
+      return res
+      }
+      console.log(getFun(arr,getString));
+      console.log(getFun(arr,getNumber));
+      console.log(getFun(arr,getboolean));
+
+    </script>
+</body>
+</html>
