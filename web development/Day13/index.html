@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+        //Polyfills
+                //filter function made 
+        let arr=[1,2,3,4,5,6]
+        Array.prototype.myfilter=function(cb){
+            let res=[]
+            for (let i=0;i<this.length;i++)
+        {
+            if(cb(this[i],i,this))
+        {
+            res.push(this[i])
+            //res.push(i)
+            //res.push(this)
+        }
+        }
+        return res
+        }
+        let data=arr.myfilter((a,b,c)=>{
+            return a%2==1
+        })
+        console.log(data);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
