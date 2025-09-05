@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            padding: 50px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.1) 0%, transparent 70%);
+            z-index: -2;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 165, 0, 0.3);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 4px;
+            height: 4px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 6px;
+            height: 6px;
+            top: 70%;
+            left: 85%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(3) {
+            width: 3px;
+            height: 3px;
+            top: 30%;
+            left: 90%;
+            animation-delay: 6s;
+        }
+
+        .particle:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            top: 80%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            min-height: 80vh;
+        }
+
+        .left-content {
+            padding-top: 50px;
+            opacity: 0;
+            animation: slideInLeft 1s ease forwards 0.5s;
+        }
+
+        .services-title {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .services-title .awesome {
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffdd00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .services-description {
+            font-size: 18px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+        }
+
+        .right-services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            opacity: 0;
+            animation: slideInRight 1s ease forwards 0.8s;
+        }
+
+        .top-service {
+            grid-column: 1;
+        }
+
+        .bottom-services {
+            display: contents;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .service-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .service-skills {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            background: transparent;
+            color: #ff6b35;
+            padding: 8px 20px;
+            border: 2px solid #ff6b35;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .learn-more-btn:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            z-index: -1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .services-title {
+                font-size: 48px;
+            }
+            
+            .bottom-services {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            body {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-title {
+                font-size: 36px;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="main-container">
+        <!-- Left Content -->
+        <div class="left-content">
+            <h1 class="services-title">
+                My <span class="awesome">Awesome</span><br>
+                services
+            </h1>
+            <p class="services-description">
+                Lorem ipsum is simply dummy text of printing of printing Lorem ipsum is simply dummy text of printing
+            </p>
+            <button class="download-btn">Download CV</button>
+        </div>
+
+        <!-- Right Services -->
+        <div class="right-services">
+            <!-- Web Development in Upper Middle -->
+            <div class="web-dev-service">
+                <div class="service-card">
+                    <div class="service-icon">😎</div>
+                    <div class="service-content">
+                        <h3>Web Development</h3>
+                        <p class="service-skills">
+                            HTML5, CSS3, JavaScript, ReactJs, NodeJs, Express Js, MongoDB
+                        </p>
+                        <a href="#" class="learn-more-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Services -->
+            <div class="bottom-services">
+                <div class="service-card">
+                    <div class="service-icon">🤩</div>
+                    <div class="service-content">
+                        <h3>UI/UX Design</h3>
+                        <p class="service-skills">
+                            Figma, Sketch, Photoshop, Adobe Illustrator, Adobe XD
+                        </p>
+                        <a href="#" class="learn-more-btn">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">😊</div>
+                    <div class="service-content">
+                        <h3>Frontend Frameworks</h3>
+                        <p class="service-skills">
+                            Bootstrap, Material UI, Style Components, NextJs, Email Js
+                        </p>
+                        <a href="#" class="learn-more-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

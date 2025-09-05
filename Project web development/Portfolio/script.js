@@ -92,3 +92,120 @@
                 particle.style.transform += ` translate(${x}px, ${y}px)`;
             });
         });
+
+        const brandLogos = document.querySelectorAll('.brand-logo');
+        
+        brandLogos.forEach(logo => {
+            logo.addEventListener('mouseenter', () => {
+                logo.style.transform = 'scale(1.2) rotate(5deg)';
+                logo.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.4)';
+            });
+            
+            logo.addEventListener('mouseleave', () => {
+                logo.style.transform = 'scale(1) rotate(0deg)';
+                logo.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+            });
+        });
+
+        // Parallax effect for background circles
+        document.addEventListener('mousemove', (e) => {
+            const circles = document.querySelectorAll('.bg-circle');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            circles.forEach((circle, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = mouseX * speed * 10;
+                const y = mouseY * speed * 10;
+                circle.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Interactive animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        brandLogos.forEach(logo => {
+            observer.observe(logo);
+        });
+
+
+
+        // Portfolio section JavaScript (add this to your existing script.js)
+// document.addEventListener('DOMContentLoaded', function() {
+//     const portfolioCards = document.querySelectorAll('.project-card');
+//     const viewButtons = document.querySelectorAll('.view-button');
+
+//     // Card hover effects
+//     portfolioCards.forEach(card => {
+//         card.addEventListener('mouseenter', function() {
+//             this.style.transform = 'translateY(-8px) scale(1.02)';
+//         });
+
+//         card.addEventListener('mouseleave', function() {
+//             this.style.transform = 'translateY(0) scale(1)';
+//         });
+//     });
+
+//     // Button click effects
+//     viewButtons.forEach(button => {
+//         button.addEventListener('click', function(e) {
+//             e.preventDefault();
+            
+//             // Create ripple effect
+//             const ripple = document.createElement('span');
+//             const rect = this.getBoundingClientRect();
+//             const size = Math.max(rect.width, rect.height);
+//             const x = e.clientX - rect.left - size / 2;
+//             const y = e.clientY - rect.top - size / 2;
+            
+//             ripple.style.position = 'absolute';
+//             ripple.style.width = ripple.style.height = size + 'px';
+//             ripple.style.left = x + 'px';
+//             ripple.style.top = y + 'px';
+//             ripple.style.background = 'rgba(0, 255, 136, 0.3)';
+//             ripple.style.borderRadius = '50%';
+//             ripple.style.transform = 'scale(0)';
+//             ripple.style.animation = 'ripple 0.6s linear';
+//             ripple.style.pointerEvents = 'none';
+            
+//             this.appendChild(ripple);
+            
+//             setTimeout(() => {
+//                 ripple.remove();
+//             }, 600);
+//         });
+//     });
+// });
+
+// // Add CSS animation for ripple effect
+// const portfolioStyle = document.createElement('style');
+// portfolioStyle.textContent = `
+//     @keyframes ripple {
+//         to {
+//             transform: scale(4);
+//             opacity: 0;
+//         }
+//     }
+// `;
+// document.head.appendChild(portfolioStyle);
+
+
+//project
+
+// function viewProject(projectName) {
+//   alert("You clicked on: " + projectName);
+//   // Example: redirect to project pages
+//   // window.location.href = projectName.toLowerCase().replace(" ", "-") + ".html";
+// }
+
+
+
+
+
+
