@@ -205,6 +205,121 @@
 // }
 
 
+//contact me 
+
+
+const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Input animation effects
+        const inputs = document.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+
+            // Typing effect
+            input.addEventListener('input', function() {
+                if (this.value.length > 0) {
+                    this.style.borderColor = '#ff8c00';
+                } else {
+                    this.style.borderColor = '#333333';
+                }
+            });
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Add loading state
+            submitBtn.textContent = '';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                // Reset form
+                form.reset();
+                
+                // Reset button
+                submitBtn.textContent = 'Send';
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 3000);
+
+                // Reset input borders
+                inputs.forEach(input => {
+                    input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                });
+
+            }, 2000);
+        });
+
+        // Add some interactive particles on mouse move
+        document.addEventListener('mousemove', function(e) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                top: ${e.clientY}px;
+                left: ${e.clientX}px;
+                width: 3px;
+                height: 3px;
+                background: #ff8c00;
+                border-radius: 50%;
+                pointer-events: none;
+                opacity: 0.6;
+                animation: fadeOut 1s ease-out forwards;
+                z-index: 999;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                document.body.removeChild(particle);
+            }, 1000);
+        });
+
+        // Add fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% {
+                    opacity: 0.6;
+                    transform: scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+
+
+
 
 
 
