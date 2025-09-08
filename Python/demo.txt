@@ -1,0 +1,14 @@
+|Feature                     | 'AND'('a and b')
+|-----------------------------|------------------------
+|**Logic meaning**            | true if *both* are true
+|**Short-circuit**            | Stops if left is falsy(returns'a')
+| **return in python**        | returns one of the operands 
+**truth table**
+
+|a            |b
+|-----        |-----
+|F            |F
+|F            |T
+|T           |F
+|T            |T
+|use cases    |Ensure both condithoin hold 
