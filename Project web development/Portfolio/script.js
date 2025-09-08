@@ -135,77 +135,10 @@
         });
 
 
-
-        // Portfolio section JavaScript (add this to your existing script.js)
-// document.addEventListener('DOMContentLoaded', function() {
-//     const portfolioCards = document.querySelectorAll('.project-card');
-//     const viewButtons = document.querySelectorAll('.view-button');
-
-//     // Card hover effects
-//     portfolioCards.forEach(card => {
-//         card.addEventListener('mouseenter', function() {
-//             this.style.transform = 'translateY(-8px) scale(1.02)';
-//         });
-
-//         card.addEventListener('mouseleave', function() {
-//             this.style.transform = 'translateY(0) scale(1)';
-//         });
-//     });
-
-//     // Button click effects
-//     viewButtons.forEach(button => {
-//         button.addEventListener('click', function(e) {
-//             e.preventDefault();
-            
-//             // Create ripple effect
-//             const ripple = document.createElement('span');
-//             const rect = this.getBoundingClientRect();
-//             const size = Math.max(rect.width, rect.height);
-//             const x = e.clientX - rect.left - size / 2;
-//             const y = e.clientY - rect.top - size / 2;
-            
-//             ripple.style.position = 'absolute';
-//             ripple.style.width = ripple.style.height = size + 'px';
-//             ripple.style.left = x + 'px';
-//             ripple.style.top = y + 'px';
-//             ripple.style.background = 'rgba(0, 255, 136, 0.3)';
-//             ripple.style.borderRadius = '50%';
-//             ripple.style.transform = 'scale(0)';
-//             ripple.style.animation = 'ripple 0.6s linear';
-//             ripple.style.pointerEvents = 'none';
-            
-//             this.appendChild(ripple);
-            
-//             setTimeout(() => {
-//                 ripple.remove();
-//             }, 600);
-//         });
-//     });
-// });
-
-// // Add CSS animation for ripple effect
-// const portfolioStyle = document.createElement('style');
-// portfolioStyle.textContent = `
-//     @keyframes ripple {
-//         to {
-//             transform: scale(4);
-//             opacity: 0;
-//         }
-//     }
-// `;
-// document.head.appendChild(portfolioStyle);
-
-
-//project
-
-// function viewProject(projectName) {
-//   alert("You clicked on: " + projectName);
-//   // Example: redirect to project pages
-//   // window.location.href = projectName.toLowerCase().replace(" ", "-") + ".html";
-// }
-
-
 //contact me 
+
+
+
 
 
 const form = document.getElementById('contactForm');
@@ -277,6 +210,7 @@ const form = document.getElementById('contactForm');
             }, 2000);
         });
 
+
         // Add some interactive particles on mouse move
         document.addEventListener('mousemove', function(e) {
             const particle = document.createElement('div');
@@ -316,6 +250,40 @@ const form = document.getElementById('contactForm');
             }
         `;
         document.head.appendChild(style);
+
+        
+
+
+
+
+        //buttom pages
+
+
+        document.getElementById('email').addEventListener('click', function() {
+            navigator.clipboard.writeText('Pravesh252@gmail.com').then(function() {
+                const email = document.getElementById('email');
+                const originalText = email.textContent;
+                
+                email.textContent = '📋 Email Copied!';
+                email.style.color = '#4CAF50';
+                
+                setTimeout(() => {
+                    email.textContent = originalText;
+                    email.style.color = 'white';
+                }, 2000);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                console.log('Clipboard not supported');
+                alert('Email: Pravesh252@gmail.com');
+            });
+        });
+
+        // Ensure all elements are properly clickable
+        document.querySelectorAll('.social-icon').forEach(function(icon) {
+            icon.style.pointerEvents = 'auto';
+        });
+
+        document.getElementById('email').style.pointerEvents = 'auto';
 
 
 

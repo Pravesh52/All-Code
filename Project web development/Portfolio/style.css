@@ -1783,3 +1783,139 @@ h3 {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+
+
+        /* Buttom pages */
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* overflow: hidden; */
+        }
+
+        .cont {
+            width: 100vw;
+            height: 100vh;
+            background: #201f1f;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .yellow-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65%;
+            background: #ffc107;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            transform: scaleX(1.2);
+        }
+        
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            
+        }
+
+        .email {
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 80px;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: #333;
+            transition: fill 0.3s ease;
+        }
+
+        .social-icon:nth-child(1):hover svg {
+            fill: #E4405F;
+        }
+
+        .social-icon:nth-child(2):hover svg {
+            fill: #1877F2;
+        }
+
+        .social-icon:nth-child(3):hover svg {
+            fill: #333;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .email {
+                font-size: 18px;
+                margin-bottom: 60px;
+            }
+            
+            .social-icons {
+                gap: 30px;
+            }
+            
+            .social-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .social-icon svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
