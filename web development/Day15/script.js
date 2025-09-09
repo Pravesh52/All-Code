@@ -37,30 +37,35 @@
 // h1.innerText="hello"
 
 
-let img=document.querySelector("img")
+// let img=document.querySelector("img")
 
-let image=[
-"https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
-"https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
-"https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
-"https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D"
-]
+// let image=[
+// "https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
+// "https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
+// "https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D",
+// "https://images.unsplash.com/photo-1757137910091-1cf071030691?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D"
+// ]
+// // let num=0;
+
+// // setInterval (function()
+// // {
+// //     num++;
+// //     if(num>=image.length){
+// //         num=0;
+// //     }
+// //     img.src=image[num];
+// // },2000)
+
+
 // let num=0;
-
-// setInterval (function()
+// setInterval(function()
 // {
-//     num++;
-//     if(num>=image.length){
-//         num=0;
-//     }
-//     img.src=image[num];
+//     image.setAttribute('src',arr[num]);
+//     num=(num+1)%arr.length;
 // },2000)
 
 
-let num=0;
-setInterval(function()
-{
-    image.setAttribute('src',arr[num]);
-    num=(num+1)%arr.length;
-},2000)
-
+let body=document.querySelector("body")
+function fun1(){
+    body.style.backgroundColor="gray"
+}
