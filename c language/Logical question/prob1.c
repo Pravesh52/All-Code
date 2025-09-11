@@ -1,8 +1,8 @@
 #include<stdio.h>
 // #include<conio.h>
 
-int main()
-{
+// int main()
+// {
     //sum of two number
 
     // int p,n;
@@ -71,8 +71,36 @@ int main()
 //factorial of a number using recursion
 
 
+// int fact(int n) {
+//     if (n <= 1) {   // Base case
+//         return 1;
+//     }
+//     return n * fact(n - 1); // Recursive case
+// }
 
+// int main() {
+//     int n = 5;
+//     printf("Factorial of %d = %d\n", n, fact(n));
+//     return 0;
+// }
 
-
-
+//Fibonacci Series using recursion
+int fib(int n) {
+    if (n == 0) return 0;   // Base case
+    if (n == 1) return 1;   // Base case
+    return fib(n - 1) + fib(n - 2); // Recursive case
 }
+
+int main() {
+    int n = 6;
+    printf("Fibonacci(%d) = %d\n", n, fib(n));
+    printf("Fibonacci(%d)",n);
+    return 0;
+}
+
+
+
+
+
+
+
