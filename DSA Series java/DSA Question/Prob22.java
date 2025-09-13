@@ -20,5 +20,6 @@ public class Prob22 {
             num=num/10;
         }
         System.out.print("Sum of number:"+sum);
+        
     }
 }
