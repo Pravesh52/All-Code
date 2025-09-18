@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Show Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #111;
+      color: white;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: orange;
+      color: white;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    button:hover {
+      background: darkorange;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 20px;
+    }
+    .card {
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      width: 220px;
+      text-align: center;
+    }
+    .card img {
+      width: 200px;
+      border-radius: 10px;
+    }
+    .card h3 {
+      margin: 10px 0 0;
+      font-size: 18px;
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>TV Show Search</h1>
+  <input type="text" placeholder="Enter show name">
+  <button>Search</button>
+
+  <div class="container"></div>
+
+  <script>
+    let btn = document.querySelector("button");
+    let inp = document.querySelector("input");
+    let container = document.querySelector(".container");
+
+    btn.addEventListener("click", () => {
+      let searchText = inp.value.trim();
+
+      if (searchText === "") {
+        alert("Please enter a show name!");
+        return;
+      }
+
+      fetch(`https://api.tvmaze.com/search/shows?q=${searchText}`)
+        .then((data) => data.json())
+        .then((res) => {
+          console.log(res);
+          show(res);
+        })
+        .catch((err) => console.error("Error:", err));
+    });
+
+    function show(res) {
+      container.innerHTML = ""; 
+      for (let i of res) {
+        if (i.show.image) {
+          let card = document.createElement("div");
+          card.classList.add("card");
+
+          let img = document.createElement("img");
+          img.src = i.show.image.medium;
+          img.alt = i.show.name;
+
+          let title = document.createElement("h3");
+          title.textContent = i.show.name;
+
+          card.appendChild(img);
+          card.appendChild(title);
+          container.appendChild(card);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

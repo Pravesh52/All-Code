@@ -134,6 +134,21 @@
             observer.observe(logo);
         });
 
+  //Project
+  
+  function viewProject(projectName) {
+    if (projectName === "Village Website") {
+      window.open("https://example.com/village", "_blank"); 
+    } else if (projectName === "Contact Manager") {
+      window.open("https://example.com/contact-manager", "_blank");
+    } else if (projectName === "Chat App") {
+      window.open("https://example.com/chat-app", "_blank");
+    } else {
+      alert("Project link not added yet!");
+    }
+  }
+
+
 
 //contact me 
 
