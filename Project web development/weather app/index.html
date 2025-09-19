@@ -1,155 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-  <style>
-    /* Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: white;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 30px;
-      width: 350px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    h1 {
-      margin-bottom: 15px;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-
-    .search-box {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .search-box input {
-      padding: 10px;
-      border: none;
-      outline: none;
-      border-radius: 8px 0 0 8px;
-      width: 70%;
-      font-size: 1rem;
-    }
-
-    .search-box button {
-      padding: 10px;
-      border: none;
-      outline: none;
-      background: #ff9800;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 0 8px 8px 0;
-      transition: background 0.3s;
-    }
-
-    .search-box button:hover {
-      background: #e68900;
-    }
-
-    .weather {
-      margin-top: 20px;
-    }
-
-    .weather img {
-      width: 100px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-10px);}
-    }
-
-    .weather h2 {
-      font-size: 2.5rem;
-      margin: 10px 0;
-    }
-
-    .weather p {
-      font-size: 1.2rem;
-      margin: 5px 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>🌦 Weather App</h1>
-    <div class="search-box">
-      <input type="text" id="city" placeholder="Enter city name">
-      <button onclick="getWeather()">Search</button>
+    <div class="weather-container">
+        <h1 class="app-title">Weather App</h1>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Enter city name..." id="cityInput">
+            <button class="search-btn" id="searchBtn">🔍</button>
+        </div>
+
+        <div class="loading" id="loading">Loading weather data...</div>
+        
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="weather-info" id="weatherInfo">
+            <div class="location" id="location"></div>
+            <div class="date" id="date"></div>
+            
+            <div class="weather-icon" id="weatherIcon">
+                <span id="iconEmoji">☀️</span>
+            </div>
+            
+            <div class="temperature" id="temperature"></div>
+            <div class="description" id="description"></div>
+            
+            <div class="weather-details">
+                <div class="detail-item">
+                    <div class="detail-label">Feels like</div>
+                    <div class="detail-value" id="feelsLike"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Humidity</div>
+                    <div class="detail-value" id="humidity"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Wind Speed</div>
+                    <div class="detail-value" id="windSpeed"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Pressure</div>
+                    <div class="detail-value" id="pressure"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="weather" id="weather">
-      <!-- Weather details will appear here -->
-    </div>
-  </div>
 
-  <script>
-    const apiKey = "9f6290d6cda9a36a63755fadee71f83d";
+    <footer>
+  <p>© 2025 Weather App | Developed by Pravesh</p>
+  <p>Powered by OpenWeather API</p>
+  <p>Stay updated with real-time forecasts 🌤️</p>
+</footer>
 
-    async function getWeather() {
-      const city = document.getElementById("city").value;
-      if (city === "") {
-        alert("Please enter a city name");
-        return;
-      }
 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("City not found");
-        const data = await response.json();
-
-        showWeather(data);
-      } catch (error) {
-        document.getElementById("weather").innerHTML = `<p>❌ ${error.message}</p>`;
-      }
-    }
-
-    function showWeather(data) {
-      const weatherDiv = document.getElementById("weather");
-      const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-
-      weatherDiv.innerHTML = `
-        <img src="${icon}" alt="Weather Icon">
-        <h2>${Math.round(data.main.temp)}°C</h2>
-        <p>${data.weather[0].description}</p>
-        <p>🌍 ${data.name}, ${data.sys.country}</p>
-        <p>💨 Wind: ${data.wind.speed} m/s</p>
-        <p>💧 Humidity: ${data.main.humidity}%</p>
-      `;
-    }
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
