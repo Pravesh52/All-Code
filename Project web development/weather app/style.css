@@ -6,7 +6,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #7f4673 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -221,8 +221,8 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;       /* Pure page ki width lega */
-  background: linear-gradient(90deg, #d67e9e, #6f5943);
-  color: rgb(160, 94, 94);
+  background: linear-gradient(90deg, #0c0608);
+  color: rgb(242, 239, 239);
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
