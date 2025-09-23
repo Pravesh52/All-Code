@@ -1,4 +1,6 @@
 
+//Day 1
+// DATE- 22-08-25
 
 // const App=()=>{
 //   return (
@@ -26,20 +28,142 @@
 
 // export default App
 
-import React from 'react'
+// import React from 'react'
 
-const App = () => {
-  let count = 1
-  function fun1(){
-    count+=1
-  }
+// const App = () => {
+//   let count = 1
+//   function fun1(){
+//     count+=1
+//   }
+//   return (
+//     <div>
+//       <h2>{count}</h2>
+//       <button onClick={fun1}>click</button>
+//     </div>
+
+//   )
+// }
+
+// export default App
+
+
+//Day2
+// DATE: 23-08-25
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+//    let[state,Setstate]=useState(0)
+//   function fun1(){
+//     Setstate(state+1)
+//   }
+//   return (
+//     <div style={{backgroundColor:"red"}}>
+//       <h2>{state}</h2>
+//       <button onClick={fun1}>click</button>
+//     </div>
+
+//   )
+// }
+
+// export default App
+
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+//    let[state,Setstate]=useState("red")
+//   function fun1(){
+//     Setstate("green")
+//     if(state=='red'){
+//       Setstate("gold")
+//     }else{
+//       Setstate("red")
+//     }
+//   }
+//   return (
+//     <div style={{backgroundColor:state,width:"100vw",height:"100vh",display:'flex',justifyContent:'center',alignItems:"center"}}>
+//       <button onClick={fun1}>click</button>
+//       <h2>{state}</h2>
+//     </div>
+
+//   )
+// }
+
+// export default App
+
+
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+  //  let[state,Setstate]=useState(0)
+  // function fun1(){
+  //   Setstate(state+1)
+  // }
+  // function fun2(){
+  //   Setstate(state-1)
+  // }
+  // function fun3(){
+  //   Setstate(0)
+  // }
+// let [count,SetCount]=useState(new Date().toLocaleTimeString())
+//  setInterval(() => {
+//   SetCount(new Date().toLocaleTimeString())
+//  }, 1000);
+
+//   //let date=new Date().toLocaleTimeString()
+//   return (
+//     <div>
+
+//       <h3>{count}</h3>
+//       {/* <h2>{state}</h2>
+//       <button onClick={fun1}>++</button>
+  
+//       <button onClick={fun2}>--</button>
+
+//       <button onClick={fun3}>reset</button> */}
+    
+
+//     </div>
+
+   
+
+//   )
+// }
+
+// export default App
+
+
+import React, { useState, useEffect, useRef } from "react";
+
+function App() {
+  const [count, setCount] = useState(new Date().toLocaleTimeString());
+  const intervalRef = useRef(null); 
+
+  
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(intervalRef.current); // cleanup
+  }, []);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setCount(new Date().toLocaleTimeString());
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current);
+  };
+
   return (
     <div>
-      <h2>{count}</h2>
-      <button onClick={fun1}>click</button>
+      <h3>{count}</h3>
+      <button onClick={stopTimer}>Stop</button>
+      <button onClick={startTimer}>Start</button>
     </div>
-
-  )
+  );
 }
 
-export default App
+export default App;
