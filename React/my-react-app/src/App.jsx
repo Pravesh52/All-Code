@@ -2,6 +2,8 @@
 //Day 1
 // DATE- 22-08-25
 
+//import { useState } from "react"
+
 // const App=()=>{
 //   return (
 //   <div>
@@ -135,35 +137,86 @@
 // export default App
 
 
-import React, { useState, useEffect, useRef } from "react";
+// import React, { useState, useEffect, useRef } from "react";
 
-function App() {
-  const [count, setCount] = useState(new Date().toLocaleTimeString());
-  const intervalRef = useRef(null); 
+// function App() {
+//   const [count, setCount] = useState(new Date().toLocaleTimeString());
+//   const intervalRef = useRef(null); 
 
   
-  useEffect(() => {
-    startTimer();
-    return () => clearInterval(intervalRef.current); // cleanup
-  }, []);
+//   useEffect(() => {
+//     startTimer();
+//     return () => clearInterval(intervalRef.current); // cleanup
+//   }, []);
 
-  const startTimer = () => {
-    intervalRef.current = setInterval(() => {
-      setCount(new Date().toLocaleTimeString());
-    }, 1000);
-  };
+//   const startTimer = () => {
+//     intervalRef.current = setInterval(() => {
+//       setCount(new Date().toLocaleTimeString());
+//     }, 1000);
+//   };
 
-  const stopTimer = () => {
-    clearInterval(intervalRef.current);
-  };
+//   const stopTimer = () => {
+//     clearInterval(intervalRef.current);
+//   };
 
+//   return (
+//     <div>
+//       <h3>{count}</h3>
+//       <button onClick={stopTimer}>Stop</button>
+//       <button onClick={startTimer}>Start</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+//Day 3
+// import { useEffect, useState } from "react"
+// const App=()=>{
+//   let[count,SetCount]=useState(0)
+//   let[city,SetCity]=useState('REWA')
+//   useEffect(()=>{
+//     console.log("hello");
+//   },[count])
+//   return (
+//   <div>
+//    <h2>{count}</h2>
+//     <button onClick={()=>SetCount(count+1)}>click</button>
+//     <h3>{city}</h3>
+//     <button onClick={()=>SetCity("Delhi")}>change</button>
+//   </div>)
+// }
+
+// export default App
+
+
+import { useEffect, useState } from "react"
+import  './App.css'
+const App=()=>{
+  let[ApiData,SetApiData]=useState([])
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/todos')
+    .then((res)=>{
+      return res.json()
+    }).then((data)=>{
+      console.log(data);
+      SetApiData(data)
+    })
+  },[])
+  
   return (
-    <div>
-      <h3>{count}</h3>
-      <button onClick={stopTimer}>Stop</button>
-      <button onClick={startTimer}>Start</button>
-    </div>
-  );
+  <div>
+   {
+    ApiData.map((a)=>{
+      return(<>
+      <p>{a.id}</p>
+      <h2>{a.title}</h2>
+      </>)
+    })
+   }
+  </div>)
 }
 
-export default App;
+export default App
+
+
