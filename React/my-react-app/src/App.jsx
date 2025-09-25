@@ -174,7 +174,7 @@
 // import { useEffect, useState } from "react"
 // const App=()=>{
 //   let[count,SetCount]=useState(0)
-//   let[city,SetCity]=useState('REWA')
+//   let[city,SetCity]=useState(['REWA'])
 //   useEffect(()=>{
 //     console.log("hello");
 //   },[count])
@@ -183,40 +183,81 @@
 //    <h2>{count}</h2>
 //     <button onClick={()=>SetCount(count+1)}>click</button>
 //     <h3>{city}</h3>
-//     <button onClick={()=>SetCity("Delhi")}>change</button>
+//     <button onClick={()=>SetCity(["Delhi","Bhopal"])}>change</button>
 //   </div>)
 // }
 
 // export default App
 
 
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
+// import  './App.css'
+// const App=()=>{
+//   let[ApiData,SetApiData]=useState([])
+//   useEffect(()=>{
+//     fetch('https://jsonplaceholder.typicode.com/todos')
+//     .then((res)=>{
+//       return res.json()
+//     }).then((data)=>{
+//       console.log(data);
+//       SetApiData(data)
+//     })
+//   },[])
+  
+//   return (
+//   <div>
+//    {
+//     ApiData.map((a)=>{
+//       return(<>
+//       <p>{a.id}</p>
+//       <h2>{a.title}</h2>
+//       </>)
+//     })
+//    }
+//   </div>)
+// }
+
+// export default App
+
+
+//Day4
+
+import React, { useEffect, useState } from 'react'
 import  './App.css'
-const App=()=>{
-  let[ApiData,SetApiData]=useState([])
+const App = () => {
+  let[ApiData,SetData]=useState([])
+
   useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then((res)=>{
+    fetch("https://dummyjson.com/recipes").then((res)=>{
       return res.json()
     }).then((data)=>{
-      console.log(data);
-      SetApiData(data)
+      console.log(data.recipes);
+      SetData(data.recipes)
     })
   },[])
   
+  const Delete = (id) => {
+    const newData = ApiData.filter((item) => item.id !== id)
+    SetData(newData)
+  }
+
   return (
-  <div>
-   {
-    ApiData.map((a)=>{
-      return(<>
-      <p>{a.id}</p>
-      <h2>{a.title}</h2>
-      </>)
-    })
-   }
-  </div>)
+    <div>
+      {
+        ApiData.map((a)=>{
+          return(<>
+          <div id='card'>
+            <img src={a.image}/>
+            <p>{a.name}</p>
+             <button onClick={() => Delete(a.id)}>Delete</button>
+
+          </div>
+          </>)
+        })
+      }
+    </div>
+    
+  )
 }
 
 export default App
-
-
