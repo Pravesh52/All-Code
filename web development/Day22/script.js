@@ -1,6 +1,6 @@
-let arr=[1,2,-3,4,5]
-let k=3
-let n=arr.length
+// let arr=[1,2,-3,4,5]
+// let k=3
+// let n=arr.length
 // console.log(n);
 
 // let maxsum=0
@@ -37,8 +37,16 @@ let n=arr.length
 //     rej()
 // })
 
-import a from './home.js'
-import{firstName}from './home.js'
+// import a from './home.js'
+// import{firstName}from './home.js'
 
-console.log(a);
-console.log(firstName);
+// console.log(a);
+// console.log(firstName);
+
+let arr=[32,4,2,5,2,8,7]
+
+let data= arr.sort((a,b)=>{
+    return a-b
+    
+})
+console.log(data);

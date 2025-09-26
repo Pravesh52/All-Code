@@ -6,8 +6,126 @@
 #card img{
    width: 100%;
    height: 100%;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 #card button{
     cursor: pointer;
-    background-color: antiquewhite;
+    background-color: rgb(242, 121, 8);
+}
+
+/* General container */
+.container {
+  width: 90%;
+  margin: auto;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+/* Search + Buttons row */
+.top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.top-bar input {
+  padding: 10px 15px;
+  width: 250px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+.top-bar input:focus {
+  border-color: #007bff;
+}
+
+.top-bar button {
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.top-bar button:hover {
+  background: #0056b3;
+}
+
+/* Recipes Grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Recipe Card */
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 12px 0 5px;
+  font-size: 18px;
+  color: #333;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #666;
+}
+
+/* Buttons inside card */
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+}
+
+.btn-group button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-group .delete {
+  background: #ff4d4d;
+  color: white;
+}
+
+.btn-group .delete:hover {
+  background: #cc0000;
+}
+
+.btn-group .save {
+  background: #28a745;
+  color: white;
+}
+
+.btn-group .save:hover {
+  background: #1e7e34;
 }

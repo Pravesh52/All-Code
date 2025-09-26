@@ -1,4 +1,4 @@
-
+// import Project from './Project.jsx'
 //Day 1
 // DATE- 22-08-25
 
@@ -222,41 +222,181 @@
 
 //Day4
 
-import React, { useEffect, useState } from 'react'
-import  './App.css'
+// import React, { useEffect, useState } from 'react'
+// import  './App.css'
+// const App = () => {
+//   let[ApiData,SetData]=useState([])
+
+//   useEffect(()=>{
+//     fetch("https://dummyjson.com/recipes").then((res)=>{
+//       return res.json()
+//     }).then((data)=>{
+//       console.log(data.recipes);
+//       SetData(data.recipes)
+//     })
+//   },[])
+
+//   const Delete = (id) => {
+//     const newData = ApiData.filter((item) => item.id !== id)
+//     SetData(newData)
+//   }
+
+//   const Save = (item) => {
+    
+//     let savedData = JSON.parse(localStorage.getItem("savedRecipes")) || []
+
+    
+//     if (!savedData.some((recipe) => recipe.id === item.id)) {
+//       savedData.push(item)
+//       localStorage.setItem("savedRecipes", JSON.stringify(savedData))
+//       alert("Recipe saved successfully ")
+//     } else {
+//       alert("Recipe already saved ")
+//     }
+//   }
+
+//   function fun1(){
+//       let data1=[...ApiData].sort((a,b)=>{
+//         return a.rating-b.rating
+//       })
+
+//       SetData(data1)
+//     }
+
+//   function fun2(){
+//       let data1=[...ApiData].sort((a,b)=>{
+//         return b.rating-a.rating
+//       })
+
+//       SetData(data1)
+
+      
+//   }
+
+
+//   return (
+//     <div>
+//       <input type="search" />
+//     <button onClick={fun1}>Asending</button>
+//     <button onClick={fun2}>Desending</button>
+//       {
+//         ApiData.map((a)=>{
+//           return(<>
+//           <div id='card'>
+//             <img src={a.image}/>
+//             <p>{a.name}</p>
+//             <p>{a.rating}</p>
+//              <button onClick={() => Delete(a.id)}>Delete</button>
+//              <button onClick={() => Save(a)}>SAVE</button>
+
+//           </div>
+//           </>)
+//         })
+//       }
+//     </div>
+    
+//   )
+// }
+
+// export default App
+
+
+// import React, { useEffect, useState } from 'react'
+// import './App.css'
+
+// const App = () => {
+//   let [ApiData, SetData] = useState([])
+//   let [search, setSearch] = useState("")
+
+//   useEffect(() => {
+//     fetch("https://dummyjson.com/recipes")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log(data.recipes);
+//         SetData(data.recipes)
+//       })
+//   }, [])
+
+//   const Delete = (id) => {
+//     const newData = ApiData.filter((item) => item.id !== id)
+//     SetData(newData)
+//   }
+
+//   const Save = (item) => {
+//     let savedData = JSON.parse(localStorage.getItem("savedRecipes")) || []
+//     if (!savedData.some((recipe) => recipe.id === item.id)) {
+//       savedData.push(item)
+//       localStorage.setItem("savedRecipes", JSON.stringify(savedData))
+//       alert("Recipe saved successfully")
+//     } else {
+//       alert("Recipe already saved")
+//     }
+//   }
+
+//   function fun1() {
+//     let data1 = [...ApiData].sort((a, b) => {
+//       return a.rating - b.rating
+//     })
+//     SetData(data1)
+//   }
+
+//   function fun2() {
+//     let data1 = [...ApiData].sort((a, b) => {
+//       return b.rating - a.rating
+//     })
+//     SetData(data1)
+//   }
+
+//   // 🔍 Searching Logic
+//   const filteredData = ApiData.filter((item) =>
+//     item.name.toLowerCase().includes(search.toLowerCase())
+//   )
+
+//   return (
+//     <div className="container">
+//       {/* 🔎 Search + Sort Buttons */}
+//       <div className="top-bar">
+//         <input
+//           type="search"
+//           placeholder="Search Recipe..."
+//           value={search}
+//           onChange={(e) => setSearch(e.target.value)}
+//         />
+//         <button onClick={fun1}>Ascending</button>
+//         <button onClick={fun2}>Descending</button>
+//       </div>
+
+      
+//       <div className="card-container">
+//         {filteredData.map((a) => {
+//           return (
+//             <div className="card" key={a.id}>
+//               <img src={a.image} alt={a.name} />
+//               <h3>{a.name}</h3>
+//               <p>⭐ {a.rating}</p>
+//               <div className="btn-group">
+//                 <button className="delete" onClick={() => Delete(a.id)}>Delete</button>
+//                 <button className="save" onClick={() => Save(a)}>Save</button>
+//               </div>
+//             </div>
+//           )
+//         })}
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default App
+
+import React from 'react'
+
+import Project1 from './Project1'
+
 const App = () => {
-  let[ApiData,SetData]=useState([])
-
-  useEffect(()=>{
-    fetch("https://dummyjson.com/recipes").then((res)=>{
-      return res.json()
-    }).then((data)=>{
-      console.log(data.recipes);
-      SetData(data.recipes)
-    })
-  },[])
-  
-  const Delete = (id) => {
-    const newData = ApiData.filter((item) => item.id !== id)
-    SetData(newData)
-  }
-
   return (
     <div>
-      {
-        ApiData.map((a)=>{
-          return(<>
-          <div id='card'>
-            <img src={a.image}/>
-            <p>{a.name}</p>
-             <button onClick={() => Delete(a.id)}>Delete</button>
-
-          </div>
-          </>)
-        })
-      }
+      <Project1></Project1>
     </div>
-    
   )
 }
 
