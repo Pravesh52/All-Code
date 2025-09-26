@@ -301,129 +301,129 @@
 // export default App
 
 
-import React, { useEffect, useState } from 'react'
-import './App.css'
-
-const App = () => {
-  let [ApiData, SetData] = useState([])
-  let [search, setSearch] = useState("")
-   let [filteredddData,SetFilteredddData]=     useState([])
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/recipes")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.recipes);
-        SetData(data.recipes)
-        SetFilteredddData(data.recipes)
-      })
-  }, [])
-
-  const Delete = (id) => {
-    const newData = ApiData.filter((item) => item.id !== id)
-    SetData(newData)
-  }
-
-  const Save = (item) => {
-    let savedData = JSON.parse(localStorage.getItem("savedRecipes")) || []
-    if (!savedData.some((recipe) => recipe.id === item.id)) {
-      savedData.push(item)
-      localStorage.setItem("savedRecipes", JSON.stringify(savedData))
-      alert("Recipe saved successfully")
-    } else {
-      alert("Recipe already saved")
-    }
-  }
-
-  function fun1() {
-    let data1 = [...ApiData].sort((a, b) => {
-      return a.rating - b.rating
-    })
-    SetData(data1)
-  }
-
-  function fun2() {
-    let data1 = [...ApiData].sort((a, b) => {
-      return b.rating - a.rating
-    })
-    SetData(data1)
-  }
-
-  // 🔍 Searching Logic
-  const filteredData = ApiData.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  )
-
-  function lunch(searchValue){
-   let data=   ApiData.filter((a)=>{
-      return a.mealType[0]==searchValue
-
-    })
-    SetFilteredddData(data)
-
-  }
-
-  function dinner(x){
-    let data=   ApiData.filter((a)=>{
-      return a.mealType[0]==x
-
-    })
-    SetFilteredddData(data)
-
-
-  }
-
-  return (
-    <div className="container">
-      {/* 🔎 Search + Sort Buttons */}
-      
-
-      <div className="top-bar">
-        <input
-          type="search"
-          placeholder="Search Recipe..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button onClick={fun1}>Ascending</button>
-        <button onClick={fun2}>Descending</button>
-        <button onClick={()=>lunch("Lunch")}>lunch</button>
-      <button onClick={()=>dinner("Dinner")}>dinner</button>
-      <button>breakfast</button>
-      </div>
-
-      
-      <div className="card-container">
-        {filteredddData.map((a) => {
-          return (
-            <div className="card" key={a.id}>
-              <img src={a.image} alt={a.name} />
-              <h3>{a.name}</h3>
-              <p>⭐ {a.rating}</p>
-              <div className="btn-group">
-                <button className="delete" onClick={() => Delete(a.id)}>Delete</button>
-                <button className="save" onClick={() => Save(a)}>Save</button>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
-export default App
-
-// import React from 'react'
-
-// import Project1 from './Project1'
+// import React, { useEffect, useState } from 'react'
+// import './App.css'
 
 // const App = () => {
+//   let [ApiData, SetData] = useState([])
+//   let [search, setSearch] = useState("")
+//    let [filteredddData,SetFilteredddData]=     useState([])
+
+//   useEffect(() => {
+//     fetch("https://dummyjson.com/recipes")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         console.log(data.recipes);
+//         SetData(data.recipes)
+//         SetFilteredddData(data.recipes)
+//       })
+//   }, [])
+
+//   const Delete = (id) => {
+//     const newData = ApiData.filter((item) => item.id !== id)
+//     SetData(newData)
+//   }
+
+//   const Save = (item) => {
+//     let savedData = JSON.parse(localStorage.getItem("savedRecipes")) || []
+//     if (!savedData.some((recipe) => recipe.id === item.id)) {
+//       savedData.push(item)
+//       localStorage.setItem("savedRecipes", JSON.stringify(savedData))
+//       alert("Recipe saved successfully")
+//     } else {
+//       alert("Recipe already saved")
+//     }
+//   }
+
+//   function fun1() {
+//     let data1 = [...ApiData].sort((a, b) => {
+//       return a.rating - b.rating
+//     })
+//     SetData(data1)
+//   }
+
+//   function fun2() {
+//     let data1 = [...ApiData].sort((a, b) => {
+//       return b.rating - a.rating
+//     })
+//     SetData(data1)
+//   }
+
+//   // 🔍 Searching Logic
+//   const filteredData = ApiData.filter((item) =>
+//     item.name.toLowerCase().includes(search.toLowerCase())
+//   )
+
+//   function lunch(searchValue){
+//    let data=   ApiData.filter((a)=>{
+//       return a.mealType[0]==searchValue
+
+//     })
+//     SetFilteredddData(data)
+
+//   }
+
+//   function dinner(x){
+//     let data=   ApiData.filter((a)=>{
+//       return a.mealType[0]==x
+
+//     })
+//     SetFilteredddData(data)
+
+
+//   }
+
 //   return (
-//     <div>
-//       <Project1></Project1>
+//     <div className="container">
+//       {/* 🔎 Search + Sort Buttons */}
+      
+
+//       <div className="top-bar">
+//         <input
+//           type="search"
+//           placeholder="Search Recipe..."
+//           value={search}
+//           onChange={(e) => setSearch(e.target.value)}
+//         />
+//         <button onClick={fun1}>Ascending</button>
+//         <button onClick={fun2}>Descending</button>
+//         <button onClick={()=>lunch("Lunch")}>lunch</button>
+//       <button onClick={()=>dinner("Dinner")}>dinner</button>
+//       <button>breakfast</button>
+//       </div>
+
+      
+//       <div className="card-container">
+//         {filteredddData.map((a) => {
+//           return (
+//             <div className="card" key={a.id}>
+//               <img src={a.image} alt={a.name} />
+//               <h3>{a.name}</h3>
+//               <p>⭐ {a.rating}</p>
+//               <div className="btn-group">
+//                 <button className="delete" onClick={() => Delete(a.id)}>Delete</button>
+//                 <button className="save" onClick={() => Save(a)}>Save</button>
+//               </div>
+//             </div>
+//           )
+//         })}
+//       </div>
 //     </div>
 //   )
 // }
 
 // export default App
+
+import React from 'react'
+
+import Project1 from './Project1'
+
+const App = () => {
+  return (
+    <div>
+      <Project1></Project1>
+    </div>
+  )
+}
+
+export default App
