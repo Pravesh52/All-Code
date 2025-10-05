@@ -143,7 +143,15 @@
 
 
 //contact me 
+function sendMail(){
+   let parms = {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        user_message: document.getElementById("message").value
+        }
 
+    emailjs.send("service_mymh6gd","template_8ychpap",parms).then(alert("Email Send!!"))
+}
 
 
 

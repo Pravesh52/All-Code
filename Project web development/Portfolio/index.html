@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pravesh Tiwari</title>
     <link rel="stylesheet" href="style.css">
-     <!-- <link rel="stylesheet" href="contact.css"> -->
+
+      <script type="text/javascript"
+     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "VF0cJIawVD8znH6pa",
+      });
+   })();
+</script>
 </head>
 <body>
     <!-- Animated particles -->
@@ -235,7 +245,9 @@
   <!-- Contact me  -->
 
 
+
 <section id="contact">
+
   <div class="bg-elements">
         <div class="floating-dot"></div>
         <div class="floating-dot"></div>
@@ -264,7 +276,7 @@
                         <textarea id="message" class="form-input form-textarea" placeholder="Message" required></textarea>
                     </div>
                     
-                    <button type="submit" class="submit-btn" id="submitBtn">
+                    <button type="submit" class="submit-btn" id="submitBtn" onclick="sendMail()">
                         Send
                     </button>
                 </form>
