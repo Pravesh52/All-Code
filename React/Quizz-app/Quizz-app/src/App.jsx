@@ -3,8 +3,10 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Question from "./Components/Question";
+import Question from "./Components/Question";
 import qBank from "./Components/QuestionBank";
 import Score from "./Components/Score";
+
 import "./App.css";
 
 class App extends Component {
