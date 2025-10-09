@@ -2,10 +2,10 @@
 
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Question from "./Components/Question";
-import Question from "./Components/Question";
-import qBank from "./Components/QuestionBank";
-import Score from "./Components/Score";
+import Question from "./Question";
+// import Question from "./Components/Question";
+import qBank from "./QuestionBank";
+import Score from "./Score";
 
 import "./App.css";
 
@@ -57,7 +57,7 @@ class App extends Component {
             this.state;
         return (
             <div className="App d-flex flex-column align-items-center justify-content-center">
-                <h1 className="app-title">QUIZ APP</h1>
+                <h1 className="app-title">QUIZZ APP</h1>
                 {!quizEnd ? (
                     <Question
                         question={questionBank[currentQuestion]}
