@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
   let[data,SetData]=useState({
@@ -37,12 +38,17 @@ const Signup = () => {
       <input type='password' name='password' value={data.password} onChange={fun1} placeholder='Enter your Password'></input>
       <br></br>
       <br></br>
-      <button onClick={handleClick}>aleartClick</button>
+      {/* <button onClick={handleClick}>aleartClick</button> */}
       <button onClick={done}>Click</button>
       <h3>{show.name}</h3>
       <h3>{show.email}</h3>
       <h3>{show.password}</h3>
-
+      <Link  to={'/login'} >  
+        <button>Login</button>
+      </Link>
+      <Link  to={'/'} >  
+        <button>Home</button>
+      </Link>
     </div>
   )
 }

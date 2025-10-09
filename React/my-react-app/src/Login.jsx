@@ -51,6 +51,9 @@ const Login = () => {
 <Link  to={'/signup'} >  
 <button>go to the SignUp page</button>
 </Link>
+<Link  to={'/'} >  
+        <button>Home</button>
+ </Link>
     </div>
   )
 }
