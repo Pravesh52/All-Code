@@ -115,6 +115,7 @@ const Home = ({cart,SetCart,  apiData,SetData,filteredddData,SetFilteredddData})
             <p>{a.name}</p>
             <p> Rating: {a.rating}</p>
          <button  onClick={()=> SetCart([...cart,a])}>add </button>
+         
            
           </div>
           </>)
