@@ -1,15 +1,20 @@
-// import React from 'react'
-// import Home from './Home.jsx'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ContextP } from "./Context.jsx";
+import Home from "./Home.jsx";
+import Cart from "./AddToCart.jsx";
 
-import { Children, createContext,useEffect,useReducer } from "react";
-import Context from "./Context";
+const App = () => {
+  return (
+    <ContextP>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Router>
+    </ContextP>
+  );
+};
 
-// const App = () => {
-//   return (
-//     <div>
-//       <Home></Home>
-//     </div>
-//   )
-// }
-
-// export default App
+export default App;
