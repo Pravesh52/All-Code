@@ -24,3 +24,6 @@ if is_palindrome:
 else:
     print(" It is not a palindrome.")
 
+
+    
+

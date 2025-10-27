@@ -7,12 +7,15 @@ const App = () => {
     Setinput(e.target.value)
   }
   function btn(){
+    if(input == ""){
+      return
+    }
     Setdata([...data,input])
   }
   function deletee(id){
     Setdata(data.filter((a,b)=>{
       return b != id;
-      
+
     }))
   }
   return (
