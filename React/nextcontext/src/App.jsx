@@ -197,38 +197,77 @@
 // export default App;
 
 
-import React, { useReducer } from 'react';
-import './App.css'; // Import the CSS file
+// import React, { useReducer } from 'react';
+// import './App.css'; // Import the CSS file
 
+// const App = () => {
+//   function reducer(count, action) {
+//     if (action.type === '++') {
+//       return count + 1;
+//     } else if (action.type === '--') {
+//       return count - 1;
+//     } else if (action.type === 'reset') {
+//       return 0;
+//     } else {
+//       return count;
+//     }
+//   }
+
+//   const [count, dispatch] = useReducer(reducer, 0);
+
+//   return (
+//     <div className="circle-container">
+//       <div className="counter-box">
+//         <h1>Counter</h1>
+//         <h1>Radha🕉️</h1>
+//         <h2>{count}</h2>
+//         <div className="button-group">
+//           <button onClick={() => dispatch({ type: '++' })}>++</button>
+//           <button onClick={() => dispatch({ type: '--' })}>--</button>
+//           <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+// import React from 'react'
+// import { NavLink } from "react-router-dom";
+// import './App.css';
+
+// const App = () => {
+//   return (
+//     <div>
+      
+//     </div>
+//   );
+// }
+
+// export default App
+
+import React from 'react'
+import Navbar from './navbar';
+import {Routes, Route} from 'react-router-dom'
+import './Navbar.css'
+import Home from './Home'
+import Signup from './Signup';
+import About from './About'
+import Login from './Login';
 const App = () => {
-  function reducer(count, action) {
-    if (action.type === '++') {
-      return count + 1;
-    } else if (action.type === '--') {
-      return count - 1;
-    } else if (action.type === 'reset') {
-      return 0;
-    } else {
-      return count;
-    }
-  }
-
-  const [count, dispatch] = useReducer(reducer, 0);
-
   return (
-    <div className="circle-container">
-      <div className="counter-box">
-        <h1>Counter</h1>
-        <h1>Radha🕉️</h1>
-        <h2>{count}</h2>
-        <div className="button-group">
-          <button onClick={() => dispatch({ type: '++' })}>++</button>
-          <button onClick={() => dispatch({ type: '--' })}>--</button>
-          <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+    <div>
 
-export default App;
+      <Navbar></Navbar>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/about' element={<About/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/signup' element={<Signup/>}></Route>
+      </Routes>
+    </div>
+  )
+}
+
+export default App
