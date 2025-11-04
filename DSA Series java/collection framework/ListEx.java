@@ -15,5 +15,7 @@ public class ListEx {
         fruits.remove(2);
         System.out.println(fruits);
         System.out.println(fruits.size());
+
+        
     }
 }
