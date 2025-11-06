@@ -25,9 +25,28 @@
 let express=require('express')
 let app=express()
 
-app.use('/',(req,res)=>{
-    res.send("mai hu don")
+// let arr=['cat','dog','cat','dog']
+// app.get('/:ani',(req,res)=>{
+//     let {ani}=req.params
+//     let data=arr.filter((a)=>{
+//         return a==ani
+//     })
+//     res.send(data)
+// })
+
+
+// app.use('/',(req,res)=>{
+//     res.send("mai hu don")
+// })
+
+let arr=['pravesh tiwari','ankit pal','pravesh','ankit']
+
+app.get('/search',(req,res)=>{
+    let{firstname,lastname}=req.query
+    console.log(`firstname: ${firstname} lastname: ${lastname}`)
+    res.send(`firstname: ${firstname} lastname: ${lastname}`)
 })
+
 
 app.listen(4000,()=>{
     console.log("server running on prt no 4000");
