@@ -8,3 +8,5 @@ lst2.remove('two')
 print(lst2)
 
 print(len(lst2))
+
+
