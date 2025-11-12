@@ -78,3 +78,5 @@ s = {"pravesh", "ankit", "anand"}
 
 common = set.intersection(*[set(name) for name in s])
 print(common)
+
+
