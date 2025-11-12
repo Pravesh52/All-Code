@@ -1,0 +1,106 @@
+/* ---------- Reset and base styles ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- Signup container ---------- */
+fieldset {
+  background: #ffffff;
+  border: none;
+  width: 380px;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+fieldset > span:first-child {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Labels and inputs ---------- */
+span {
+  display: block;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px 0;
+  background: #667eea;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+/* ---------- Link button ---------- */
+a button {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+  margin-top: 10px;
+}
+
+a button:hover {
+  background: #667eea;
+  color: #fff;
+}
+
+/* ---------- Responsive design ---------- */
+@media (max-width: 480px) {
+  fieldset {
+    width: 90%;
+    padding: 25px 20px;
+  }
+
+  legend {
+    font-size: 1.4rem;
+  }
+}

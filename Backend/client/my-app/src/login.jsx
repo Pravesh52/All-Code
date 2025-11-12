@@ -21,18 +21,20 @@ const Login = () => {
       const res = await axios.post("http://localhost:4000/login", input, {
       });
 
-      console.log("SERVER RESPONSE →", res.data);
+      // console.log("SERVER RESPONSE →", res.data);
+      alert(res.data)
       
 
     } catch (error) {
-      console.log("ERROR:", error);
+      // console.log("ERROR:", error);
+      alert(err)
     }
   }
 
   return (
     <div>
       <fieldset> 
-        <legend>login page</legend> 
+        <span>Login Page</span>
         <input 
           type='email'
           onChange={loginFun}
@@ -54,15 +56,18 @@ const Login = () => {
         <br/><br/>
 
         <button onClick={done}>login</button>
-      </fieldset>
 
-      <fieldset>
         <Link to={'/'}>
           <button>signup</button>
         </Link>
       </fieldset>
+
+     
+     
     </div>
   )
 }
 
 export default Login;
+
+

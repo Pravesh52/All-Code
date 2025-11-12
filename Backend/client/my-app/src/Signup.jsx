@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
+import './Signup.css';
 const Signup = () => {
  const [input, setInput] = useState({
     username:"",
@@ -31,7 +32,7 @@ const Signup = () => {
     <div>
         <fieldset>
 
-            <legend>Signup Page</legend>
+          <span>Signup Page</span>
      
             <br/>
             <span>username:</span>
@@ -77,3 +78,5 @@ const Signup = () => {
 }
 
 export default Signup
+
+

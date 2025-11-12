@@ -64,6 +64,9 @@ let express=  require('express')
 let cors=require('cors')
    let User=    require('./user')
    let bcrypt=    require('bcrypt')
+const sendOtp = require('./twillio')
+
+   //   let sendOtp=require('./twillio')
 
 
 //    npm i mongoose
@@ -72,65 +75,80 @@ let cors=require('cors')
  let app=     express()
  app.use(cors())
  app.use(express.json())
- mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
- then(()=>{
-    console.log("db conneted...");
+//  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
+//  then(()=>{
+//     console.log("db conneted...");
     
- })
+//  })
 
 
- app.get('/',(req,res)=>{
-    res.send("hiii")
+//  app.get('/',(req,res)=>{
+//     res.send("hiii")
 
- })
+//  })
  
- //signup
- app.post('/create',  async(req,res)=>{
-          let {userName,email,passWord}=   req.body
-      console.log(userName,email ,"heheh");
+//  //signup
+//  app.post('/create',  async(req,res)=>{
+//           let {userName,email,passWord}=   req.body
+//       console.log(userName,email ,"heheh");
       
-     let user=     await  User.findOne({email})
-   //   console.log(user,"hiiii");
+//      let user=     await  User.findOne({email})
+//    //   console.log(user,"hiiii");
      
-     if(user){
-        res.send("user jinda haiii")
-     }else{
-      let updatedP=     await  bcrypt.hash(passWord,10)
-         console.log(updatedP,"HEH");
+//      if(user){
+//         res.send("user jinda haiii")
+//      }else{
+//       let updatedP=     await  bcrypt.hash(passWord,10)
+//          console.log(updatedP,"HEH");
          
-        let userData=   new  User({
-            userName,
-            email,
-            passWord:updatedP
-         })
-              await userData.save()
-              res.send("account ban gya hai....")
-            //   console.log(userName,email, passWord);
-     }
+//         let userData=   new  User({
+//             userName,
+//             email,
+//             passWord:updatedP
+//          })
+//               await userData.save()
+//               res.send("account ban gya hai....")
+//             //   console.log(userName,email, passWord);
+//      }
          
- })
+//  })
 
- //login method
- app.post("/login",async(req,res)=>{
-    let {email,passWord}=   req.body
+ 
+
+//  //login method
+//  app.post("/login",async(req,res)=>{
+//     let {email,passWord}=   req.body
 
 
-       let userInfo=    await User.findOne({email})
-       console.log(userInfo,"kyaa milegaaaaaaaa");
+//        let userInfo=    await User.findOne({email})
+//        console.log(userInfo,"kyaa milegaaaaaaaa");
        
-       if(!userInfo){
-         res.send("user not found")
-       }else{
-        let validPass=   await bcrypt.compare(passWord,userInfo.passWord,)
-        if(validPass){
-         res.send("login ho gyaa")
-        }else{
-         res.send("pass sahi nhi haiiii")
-        }
-       }
+//        if(!userInfo){
+//          res.send("user not found")
+//        }else{
+//         let validPass=   await bcrypt.compare(passWord,userInfo.passWord,)
+//         if(validPass){
+//          res.send("login ho gyaa")
+//         }else{
+//          res.send("pass sahi nhi haiiii")
+//         }
+//        }
          
 
- })
+//  })
+
+ app.post('/send-otp',async(req,res)=>{
+   const{phoneNumber}=req.body;
+   const otp=Math.floor(100000+Math.random()*900000);
+   try{
+      // await sendOtp(phoneNumber,otp);
+      await sendOtp(phoneNumber, otp)
+      res.status(200).send({message:'OTP SEND SUCCESSFULLY',otp});
+
+   }catch(error){
+      res.status(500).send({error:'failed to send otp'});
+   }
+ });
   
  app.listen(4000,()=>{
     console.log("server running on port no 4000");
