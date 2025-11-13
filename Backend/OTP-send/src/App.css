@@ -1,0 +1,95 @@
+/* Page container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #eef2f3, #8e9eab);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fieldset card */
+.otp-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 360px;
+}
+
+/* Legend/title */
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Input group spacing */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.2rem;
+}
+
+/* Label styling */
+label {
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Input styling */
+input {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+/* Button styling */
+.btn {
+  margin-top: 0.8rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Primary button */
+.btn.primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #0069d9;
+}
+
+/* Secondary button */
+.btn.secondary {
+  background: #3b5842;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .otp-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}

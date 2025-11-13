@@ -60,11 +60,12 @@
 //npm i mongoose down load mongodb
 
 let express=  require('express')
-     let mongoose=      require('mongoose')
+let mongoose=      require('mongoose')
 let cors=require('cors')
    let User=    require('./user')
    let bcrypt=    require('bcrypt')
 const sendOtp = require('./twillio')
+const Otp=require('./Otp');//OTP MODEL
 
    //   let sendOtp=require('./twillio')
 
@@ -75,6 +76,13 @@ const sendOtp = require('./twillio')
  let app=     express()
  app.use(cors())
  app.use(express.json())
+
+ //Database connect karne ke liye
+ mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
+then(()=>{
+   console.log("db conneted...");
+    
+ })
 //  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
 //  then(()=>{
 //     console.log("db conneted...");
@@ -139,16 +147,55 @@ const sendOtp = require('./twillio')
 
  app.post('/send-otp',async(req,res)=>{
    const{phoneNumber}=req.body;
-   const otp=Math.floor(100000+Math.random()*900000);
+   const otp=Math.floor(100000+Math.random()*900000).toString();
+   const expiresAt=new  Date(Date.now()+1*60*1000)
    try{
       // await sendOtp(phoneNumber,otp);
       await sendOtp(phoneNumber, otp)
+      //save otp and phone nunber in the database 
+      const newOtp=new Otp({
+         phoneNumber,
+         otp,
+         expiresAt:expiresAt.toString(),
+      });
+      await newOtp.save();
       res.status(200).send({message:'OTP SEND SUCCESSFULLY',otp});
 
    }catch(error){
       res.status(500).send({error:'failed to send otp'});
    }
  });
+
+app.post('/verify', async (req, res) => {
+  const { otp } = req.body;
+  console.log(Otp,"hehehehe");
+  
+
+  try {
+
+    const otpRecord =       await Otp.findOne({ otp });
+
+    if (!otpRecord) {
+      return res.status(400).send({ error: 'Invalid OTP' });
+    }
+
+    const currentTime = new Date();
+    if (currentTime > otpRecord.expiresAt) {
+      return res.status(400).send({ error: 'OTP has expired' });
+    }
+
+
+    res.status(200).send({ message: 'OTP verified successfully' });
+
+
+    await Otp.deleteOne({ _id: otpRecord._id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to verify OTP' });
+  }
+});
+
+ 
   
  app.listen(4000,()=>{
     console.log("server running on port no 4000");
