@@ -66,6 +66,7 @@ let cors=require('cors')
    let bcrypt=    require('bcrypt')
 const sendOtp = require('./twillio')
 const Otp=require('./Otp');//OTP MODEL
+let jwt=    require('jsonwebtoken')
 
    //   let sendOtp=require('./twillio')
 
@@ -83,6 +84,11 @@ then(()=>{
    console.log("db conneted...");
     
  })
+
+ app.get('/',(req,res)=>{
+   res.send("hello")
+   
+})
 //  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
 //  then(()=>{
 //     console.log("db conneted...");
@@ -145,57 +151,140 @@ then(()=>{
 
 //  })
 
- app.post('/send-otp',async(req,res)=>{
-   const{phoneNumber}=req.body;
-   const otp=Math.floor(100000+Math.random()*900000).toString();
-   const expiresAt=new  Date(Date.now()+1*60*1000)
-   try{
-      // await sendOtp(phoneNumber,otp);
-      await sendOtp(phoneNumber, otp)
-      //save otp and phone nunber in the database 
-      const newOtp=new Otp({
-         phoneNumber,
-         otp,
-         expiresAt:expiresAt.toString(),
-      });
-      await newOtp.save();
-      res.status(200).send({message:'OTP SEND SUCCESSFULLY',otp});
+//  app.post('/send-otp',async(req,res)=>{
+//    const{phoneNumber}=req.body;
+//    const otp=Math.floor(100000+Math.random()*900000).toString();
+//    const expiresAt=new  Date(Date.now()+1*60*1000)
+//    try{
+//       // await sendOtp(phoneNumber,otp);
+//       await sendOtp(phoneNumber, otp)
+//       //save otp and phone nunber in the database 
+//       const newOtp=new Otp({
+//          phoneNumber,
+//          otp,
+//          expiresAt:expiresAt.toString(),
+//       });
+//       await newOtp.save();
+//       res.status(200).send({message:'OTP SEND SUCCESSFULLY',otp});
 
-   }catch(error){
-      res.status(500).send({error:'failed to send otp'});
-   }
- });
+//    }catch(error){
+//       res.status(500).send({error:'failed to send otp'});
+//    }
+//  });
 
-app.post('/verify', async (req, res) => {
-  const { otp } = req.body;
-  console.log(Otp,"hehehehe");
+// app.post('/verify', async (req, res) => {
+//   const { otp } = req.body;
+//   console.log(Otp,"hehehehe");
   
 
-  try {
+//   try {
 
-    const otpRecord =       await Otp.findOne({ otp });
+//     const otpRecord =       await Otp.findOne({ otp });
 
-    if (!otpRecord) {
-      return res.status(400).send({ error: 'Invalid OTP' });
-    }
+//     if (!otpRecord) {
+//       return res.status(400).send({ error: 'Invalid OTP' });
+//     }
 
-    const currentTime = new Date();
-    if (currentTime > otpRecord.expiresAt) {
-      return res.status(400).send({ error: 'OTP has expired' });
-    }
-
-
-    res.status(200).send({ message: 'OTP verified successfully' });
+//     const currentTime = new Date();
+//     if (currentTime > otpRecord.expiresAt) {
+//       return res.status(400).send({ error: 'OTP has expired' });
+//     }
 
 
-    await Otp.deleteOne({ _id: otpRecord._id });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Failed to verify OTP' });
-  }
-});
+//     res.status(200).send({ message: 'OTP verified successfully' });
 
+
+//     await Otp.deleteOne({ _id: otpRecord._id });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ error: 'Failed to verify OTP' });
+//   }
+// });
+
+// Signup2 authentication on role user admin instructor option choose
+app.post('/create',  async(req,res)=>{
+          let {userName,email,passWord,role}=   req.body
+      console.log(userName,email ,"heheh");
+      
+     let user=     await  User.findOne({email})
+     console.log(user,"hiiii");
+     
+     if(user){
+        res.send("user jinda haiii")
+     }
+         let updatedP=     await  bcrypt.hash(passWord,10)
+         console.log(updatedP,"HEH");
+         
+        let userData=   new  User({
+            userName,
+            email,
+            passWord:updatedP,
+            role:role||'user'
+         })
+              await userData.save()
+              res.send("account ban gya hai....")
+            //   console.log(userName,email, passWord);
+            
+ })
+
+//Login2
+
+ app.post("/login",async(req,res)=>{
+    let {email,passWord}=   req.body
+    console.log(email,passWord);
+    
+       let userInfo=    await User.findOne({email})
+       console.log(userInfo,"kyaa milegaaaaaaaa");
+       
+       if(!userInfo){
+         res.send("user not found")
+       }else{
+        let validPass=   await bcrypt.compare(passWord,userInfo.passWord,)
+        if(validPass){
+         let token = jwt.sign({  email: userInfo.email, role: userInfo.role }, "JHBFIUWBFIUWB");
+         console.log(token,"tokennnnn");
+         
+         res.send("login ho gyaa")
+        }else{
+         res.send("pass sahi nhi haiiii")
+        }
+       }
+        
+ })
+//check role
+
+function checkRole(role){
+   return (req,res,next)=>{
+      let token = req.headers.authorization;
+      if (!token) {
+         return res.send('Unauthorizeddd User ||');
+     }else{
+      let deCodedToken = jwt.verify(token,  "JHBFIUWBFIUWB");
+
+      if (role!==deCodedToken.role) {
+         return res.send('Access denieddd ||')
+     }
+     else {
+         next();
+     }
+
+     }
+
+   }
+ }
+
+ //check role 
  
+app.get('/public',(req,res)=>{
+   res.send("isko koi bhi dekh sakta hai")
+
+  })
+  app.get('/private', checkRole('admin') , (req,res)=>{
+   res.send("404......")
+
+  })
+  
+
   
  app.listen(4000,()=>{
     console.log("server running on port no 4000");
