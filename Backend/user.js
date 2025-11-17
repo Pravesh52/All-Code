@@ -10,8 +10,15 @@ let userSchema= mongoose.Schema({
     },
     passWord:{
         type:String
-    }
-})
+    },
+    role:{
+        type:String,
+        enum:['admin','student','instructor'],
+        default:'student'
+    },
+    resetToken: String,
+  resetTokenExpiry: Date,
+}) 
 
 
    let User=   mongoose.model("user",userSchema)

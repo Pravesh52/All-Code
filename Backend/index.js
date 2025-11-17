@@ -64,9 +64,11 @@ let mongoose=      require('mongoose')
 let cors=require('cors')
    let User=    require('./user')
    let bcrypt=    require('bcrypt')
+
 const sendOtp = require('./twillio')
 const Otp=require('./Otp');//OTP MODEL
 let jwt=    require('jsonwebtoken')
+ 
 
    //   let sendOtp=require('./twillio')
 
@@ -283,8 +285,68 @@ app.get('/public',(req,res)=>{
    res.send("404......")
 
   })
-  
 
+  //forget password
+const crypto = require('crypto');//reset email password
+ let {sendEmail} = require('./sendEmail')
+
+ app.post('/forgot-password',async(req,res)=>{
+   const{email}=req.body;
+   try{
+      const user=await User.findOne({email});
+      if(!user){
+         return res.status(404).send('user not found');
+      }
+
+      const resetToken=crypto.pseudoRandomBytes(20).toString('hex');
+      user.resetToken=resetToken;
+      user.resetTokenExpiry=Date.now()+3600000;
+      await user.save();
+
+       const resetUrl = `${req.protocol}://${req.get('host')}/api/reset-password/${resetToken}`;
+    await sendEmail(
+      user.email,
+      'Password Reset Request',
+      `Click the link below to reset your password:\n\n${resetUrl}`
+    );
+
+       res.status(200).send('Password reset email sent');
+
+   } catch (error) {
+    res.status(500).send('Error sending password reset email: ' + error.message);
+   }
+   
+ });
+
+ app.post('/reset-password/:token', async (req, res) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiry: { $gt: Date.now() }, 
+    });
+
+    if (!user) {
+      return res.status(400).send('Invalid or expired token');
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.passWord = hashedPassword;
+    user.resetToken = undefined;
+    user.resetTokenExpiry = undefined;
+    await user.save();
+
+    res.status(200).send('Password reset successfully');
+  } catch (error) {
+    res.status(500).send('Error resetting password: ' + error.message);
+  }
+});
+
+  
+  
   
  app.listen(4000,()=>{
     console.log("server running on port no 4000");

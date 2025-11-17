@@ -52,6 +52,21 @@ const App = () => {
     }
   }
 
+  //forgot password
+  const [forgotEmail, setForgotEmail] = useState("");
+
+  async function handleForgotSubmit(e) {
+    e.preventDefault();
+    try {
+      let res = await axios.post("http://localhost:4000/forgot-password", {
+        email: forgotEmail,
+      });
+      alert(res.data);
+    } catch (err) {
+      alert("Error sending reset email");
+    }
+  }
+
   return (
     <div className="main-container">
       <div className="toggle-btns">
@@ -134,6 +149,19 @@ const App = () => {
 
             <button type="submit">Login</button>
           </form>
+            <h3>Forgot Password?</h3>
+
+         <form onSubmit={handleForgotSubmit}>
+          <input
+          type="email"
+          placeholder="Enter your email"
+          value={forgotEmail}
+          onChange={(e) => setForgotEmail(e.target.value)}
+          />
+
+         <button type="submit">Send Reset Link</button>
+        </form>
+          
         </div>
       )}
     </div>
