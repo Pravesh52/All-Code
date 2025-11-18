@@ -58,7 +58,7 @@ const App = () => {
   async function handleForgotSubmit(e) {
     e.preventDefault();
     try {
-      let res = await axios.post("http://localhost:4000/forgot-password", {
+      let res = await axios.post("http://localhost:4000/reset-password", {
         email: forgotEmail,
       });
       alert(res.data);

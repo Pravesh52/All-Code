@@ -290,7 +290,7 @@ app.get('/public',(req,res)=>{
 const crypto = require('crypto');//reset email password
  let {sendEmail} = require('./sendEmail')
 
- app.post('/forgot-password',async(req,res)=>{
+ app.post('/reset-password',async(req,res)=>{
    const{email}=req.body;
    try{
       const user=await User.findOne({email});
@@ -303,7 +303,7 @@ const crypto = require('crypto');//reset email password
       user.resetTokenExpiry=Date.now()+3600000;
       await user.save();
 
-       const resetUrl = `${req.protocol}://${req.get('host')}/api/reset-password/${resetToken}`;
+       const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
     await sendEmail(
       user.email,
       'Password Reset Request',
