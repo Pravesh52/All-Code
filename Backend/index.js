@@ -303,7 +303,8 @@ const crypto = require('crypto');//reset email password
       user.resetTokenExpiry=Date.now()+3600000;
       await user.save();
 
-       const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
+      //  const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
+      const resetUrl = `http://localhost:5173/reset/${resetToken}`;
     await sendEmail(
       user.email,
       'Password Reset Request',
