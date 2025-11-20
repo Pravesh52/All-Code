@@ -5,6 +5,7 @@ import ForgetPassword from './ForgetPassword';
 import './App.css';
 import image from './assets/landing-2x.png'
 
+
 const Clone = () => {
   const [currentPage, setCurrentPage] = useState('login');
 
@@ -24,14 +25,15 @@ const Clone = () => {
           </div>
 
           <div className="auth-section">
-            <div className="page-switcher">
-              <button 
+            {/* <div className="page-switcher"> */}
+              {/* <button 
                 className={currentPage === 'login' ? 'active' : ''}
                 onClick={() => setCurrentPage('login')}
               >
                 Login
-              </button>
-              <button 
+              </button> */}
+              
+              {/* <button 
                 className={currentPage === 'signup' ? 'active' : ''}
                 onClick={() => setCurrentPage('signup')}
               >
@@ -42,12 +44,12 @@ const Clone = () => {
                 onClick={() => setCurrentPage('forget')}
               >
                 Forgot
-              </button>
-            </div>
+              </button> */}
+            {/* </div> */}
 
             {currentPage === 'login' && <Login />}
             {currentPage === 'signup' && <Signup />}
-            {currentPage === 'forgot' && <ForgetPassword />}
+            {currentPage === 'forget' && <ForgetPassword />}
 
             <div className="get-app">
               <p>Get the app.</p>

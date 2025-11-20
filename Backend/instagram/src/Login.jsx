@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -48,13 +48,19 @@ const Login = () => {
         </button>
 
         <div className="forgot-link">
-          <a href="#">Forgotten your password?</a>
+          <a>
+          <Link to="/forgetPassword">Forgotten your password?</Link>
+        </a>
+         
         </div>
       </div>
 
       <div className="signup-box">
         <span>Don't have an account? </span>
-        <a href="#">Sign up</a>
+        <a>
+          <Link to="/signup">Sign up</Link>
+        </a>
+        
       </div>
     </div>
   );

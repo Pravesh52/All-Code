@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-
+import { Link } from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
@@ -76,10 +76,12 @@ const Signup = () => {
           <a href="#">Cookies Policy</a>.
         </p>
       </div>
-
+       
       <div className="signup-box">
         <span>Have an account? </span>
-        <a href="#">Log in</a>
+        <a>
+        <Link to="/">Log in</Link>
+        </a>
       </div>
     </div>
   );
