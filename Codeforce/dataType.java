@@ -10,20 +10,31 @@ public class dataType {
         long k = sc.nextLong();
         long a = sc.nextLong();
 
-        // Step 2: Compute value using double
-        double value = (double)n * (double)k * (double)a;
-
-        // Step 3: Check int range
-        if (value >= -2147483648.0 && value <= 2147483647.0) {
+       double value = n * k;
+       if(value % a != 0){
+        System.out.println("double");
+       }
+       else{
+        if (value/a >= Integer.MIN_VALUE && value/a <= Integer.MAX_VALUE) {
             System.out.println("int");
-        }
-        // Step 4: Check long long range
-        else if (value >= -9223372036854775808.0 && value <= 9223372036854775807.0) {
-            System.out.println("long long");
-        }
-        // Step 5: Else print double
+        } 
         else {
-            System.out.println("double");
-        }
+            System.out.println("long long");
+        } 
+       }
+
+        // if(value )
+      
+        // if (value >= Integer.MIN_VALUE && value <= Integer.MAX_VALUE) {
+        //     System.out.println("int");
+        // } 
+        
+        // else if (value >= Long.MIN_VALUE && value <= Long.MAX_VALUE) {
+        //     System.out.println("long long");
+        // } 
+   
+        // else {
+        //     System.out.println("double");
+        // }
     }
 }
