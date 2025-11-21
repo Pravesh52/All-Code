@@ -205,7 +205,7 @@ then(()=>{
 
 // Signup2 authentication on role user admin instructor option choose
 app.post('/create',  async(req,res)=>{
-          let {userName,email,passWord,role}=   req.body
+          let {userName,email,passWord,role,fullName}=   req.body
       console.log(userName,email ,"heheh");
       
      let user=     await  User.findOne({email})
@@ -221,7 +221,8 @@ app.post('/create',  async(req,res)=>{
             userName,
             email,
             passWord:updatedP,
-            role:role||'user'
+            // role:role||'user',
+            fullName
          })
               await userData.save()
               res.send("account ban gya hai....")

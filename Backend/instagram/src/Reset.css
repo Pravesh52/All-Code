@@ -1,0 +1,204 @@
+/* Reset.css - Instagram-style Reset Password page clone */
+
+/* ---------- Page baseline ---------- */
+:root{
+  --bg-1: #f7f7f7;
+  --card-bg: #ffffff;
+  --muted: #8e8e8e;
+  --input-border: #dbdbdb;
+  --accent-start: #f58529; /* instagram-like gradient */
+  --accent-mid: #dd2a7b;
+  --accent-end: #8134af;
+  --btn-text: #ffffff;
+  --shadow: 0 6px 20px rgba(0,0,0,0.08);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --max-width: 420px;
+  --gap: 14px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: linear-gradient(180deg, var(--bg-1) 0%, #ffffff 100%);
+  color: #262626;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ---------- Outer layout - center the card ---------- */
+.fields {
+  width: calc(100% - 48px);
+  max-width: var(--max-width);
+  margin: 48px auto;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Add a subtle top margin for large screens */
+@media (min-width: 900px) {
+  .fields { margin: 80px auto; }
+}
+
+/* ---------- Logo / title ---------- */
+.fields h1 {
+  margin: 6px 0 18px 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* Optionally add an Instagram logo text line */
+.fields .logo {
+  font-family: 'Billabong', var(--font-family);
+  font-size: 42px;
+  margin-bottom: 6px;
+  color: var(--accent-end);
+  background: linear-gradient(45deg, var(--accent-start), var(--accent-mid), var(--accent-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* ---------- Description ---------- */
+.fields p {
+  margin: 0 0 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 320px;
+}
+
+/* ---------- Inputs ---------- */
+.fields input[type="password"],
+.fields input[type="text"],
+.fields input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: var(--gap);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-size: 14px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+  background: #fafafa;
+  height: 42px;
+}
+
+/* focus state */
+.fields input:focus {
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 0 0 3px rgba(125, 59, 170, 0.04);
+  background: #fff;
+}
+
+/* placeholder style */
+.fields input::placeholder {
+  color: #bdbdbd;
+  opacity: 1;
+}
+
+/* ---------- Button ---------- */
+#btn {
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-mid), var(--accent-end));
+  color: var(--btn-text);
+  margin-top: 4px;
+  height: 40px;
+  box-shadow: 0 4px 10px rgba(130, 56, 142, 0.14);
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+/* subtle press */
+#btn:active { transform: translateY(1px); }
+#btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------- Secondary actions ---------- */
+.fields .secondary {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.fields a.cant-reset {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/* small divider */
+.fields .divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.fields .divider .divider-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg,#e9e9e9,#f4f4f4);
+}
+.fields .divider .divider-text {
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 6px;
+}
+
+/* create account link style */
+.fields .create-account {
+  display: inline-block;
+  margin-top: 6px;
+  color: #262626;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* ---------- small helper / footer area ---------- */
+.signup-box {
+  max-width: var(--max-width);
+  margin: 12px auto;
+  text-align: center;
+  background: transparent;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* back to login link inside .signup-box */
+.signup-box .back-link {
+  color: #0095f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 420px) {
+  .fields { padding: 20px; width: calc(100% - 32px); }
+  .fields h1 { font-size: 18px; }
+  #btn { height: 42px; }
+}

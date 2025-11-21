@@ -4,6 +4,7 @@ import Clone from './Clone'
 import Signup from './Signup'
 import Login from './Login'
 import ForgetPassword from './ForgetPassword'
+import Reset from './Reset'
 
 const App = () => {
   return (
@@ -11,8 +12,9 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Clone/>}></Route>
         <Route path='/Signup' element={<Signup/>}></Route>
-         <Route path='/login' element={<Login/>}></Route>
-          <Route path='/forgetPassword' element={<ForgetPassword/>}></Route>
+        <Route path='/forgetPassword' element={<ForgetPassword/>}></Route>
+         {/* <Route path='/reset-password' element={<Reset/>}></Route> */}
+         <Route path="/reset/:token" element={<Reset />} />
           
       </Routes>
     </div>
