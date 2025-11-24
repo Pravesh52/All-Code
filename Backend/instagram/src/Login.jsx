@@ -1,55 +1,58 @@
+
+
 // import React, { useState } from 'react';
+// import axios from "axios";
 // import './App.css';
 // import { Link } from "react-router-dom";
+
 // const Login = () => {
-//   // const [username, setUsername] = useState('');
-//   // const [password, setPassword] = useState('');
 
 //   const [login, setLogin] = useState({
-//       email: "",
-//       passWord: "",
-//     });
-  
-//     function handleLoginChange(e) {
-//       setLogin({ ...login, [e.target.name]: e.target.value });
-//     }
-  
-//     async function handleLoginSubmit(e) {
-//       e.preventDefault();
-//       try {
-//         let res = await axios.post("http://localhost:4000/login", login);
-//         alert(res.data);
-//       } catch (err) {
-//         alert("Login Error");
-//       }
-//     }
+//     email: "",
+//     passWord: ""
+//   });
 
-//   // const handleSubmit = () => {
-//   //   console.log('Login submitted', { username, password });
-//   // };
+//   function handleLoginChange(e) {
+//     setLogin({ ...login, [e.target.name]: e.target.value });
+//   }
+
+//   async function handleLoginSubmit(e) {
+//     e.preventDefault();
+//     try {
+//       let res = await axios.post("http://localhost:4000/login", login);
+//       alert(res.data);
+//     } catch (err) {
+//       alert("Login Error");
+//     }
+//   }
 
 //   return (
 //     <div className="auth-container">
 //       <div className="auth-box">
 //         <div className="instagram-logo">Instagram</div>
-        
+
+//         {/* EMAIL / USERNAME */}
 //         <input
 //           type="text"
+//           name="email"
 //           placeholder="Phone number, username or email address"
-//           value={username}
-//           onChange={(e) => setUsername(e.target.value)}
+//           value={login.email}
+//           onChange={handleLoginChange}
 //           className="input-field"
 //         />
-        
+
+//         {/* PASSWORD */}
 //         <input
 //           type="password"
+//           name="passWord"
 //           placeholder="Password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
+//           value={login.passWord}
+//           onChange={handleLoginChange}
 //           className="input-field"
 //         />
-        
-//         <button onClick={handleSubmit} className="login-button">
+
+//         {/* LOGIN BUTTON */}
+//         <button onClick={handleLoginSubmit} className="login-button">
 //           Log in
 //         </button>
 
@@ -67,19 +70,13 @@
 //         </button>
 
 //         <div className="forgot-link">
-//           <a>
 //           <Link to="/forgetPassword">Forgotten your password?</Link>
-//         </a>
-         
 //         </div>
 //       </div>
 
 //       <div className="signup-box">
 //         <span>Don't have an account? </span>
-//         <a>
-//           <Link to="/signup">Sign up</Link>
-//         </a>
-        
+//         <Link to="/signup">Sign up</Link>
 //       </div>
 //     </div>
 //   );
@@ -90,9 +87,13 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import './App.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Home from "./Home";
+
 
 const Login = () => {
+
+  const navigate = useNavigate();
 
   const [login, setLogin] = useState({
     email: "",
@@ -107,7 +108,13 @@ const Login = () => {
     e.preventDefault();
     try {
       let res = await axios.post("http://localhost:4000/login", login);
-      alert(res.data);
+
+      if (res.status == 200) {
+        navigate("/Home");   
+      } else {
+        alert(res.data);
+      }
+
     } catch (err) {
       alert("Login Error");
     }
@@ -118,7 +125,6 @@ const Login = () => {
       <div className="auth-box">
         <div className="instagram-logo">Instagram</div>
 
-        {/* EMAIL / USERNAME */}
         <input
           type="text"
           name="email"
@@ -128,7 +134,6 @@ const Login = () => {
           className="input-field"
         />
 
-        {/* PASSWORD */}
         <input
           type="password"
           name="passWord"
@@ -138,7 +143,6 @@ const Login = () => {
           className="input-field"
         />
 
-        {/* LOGIN BUTTON */}
         <button onClick={handleLoginSubmit} className="login-button">
           Log in
         </button>
@@ -170,5 +174,4 @@ const Login = () => {
 };
 
 export default Login;
-
 

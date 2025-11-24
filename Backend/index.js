@@ -79,9 +79,11 @@ let jwt=    require('jsonwebtoken')
  let app=     express()
  app.use(cors())
  app.use(express.json())
+ let Upload=require('./Upload')
 
  //Database connect karne ke liye
- mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
+//  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
+ mongoose.connect("mongodb://127.0.0.1:27017/Instagram").
 then(()=>{
    console.log("db conneted...");
     
@@ -247,7 +249,7 @@ app.post('/create',  async(req,res)=>{
          let token = jwt.sign({  email: userInfo.email, role: userInfo.role }, "JHBFIUWBFIUWB");
          console.log(token,"tokennnnn");
          
-         res.send("login ho gyaa")
+         res.status(200).send("login ho gyaa")
         }else{
          res.send("pass sahi nhi haiiii")
         }
@@ -347,7 +349,19 @@ const crypto = require('crypto');//reset email password
   }
 });
 
-  
+
+ // image upload code
+app.post('/upload',async(req,res)=>{
+   let{imgUrl}=req.body
+   if(!imgUrl){
+    return res.send("not found url.....")
+   }
+   let uploadD=new Upload({
+    imgUrl
+   })
+   await uploadD.save()
+   return res.send("upload urllll");
+})
   
   
  app.listen(4000,()=>{

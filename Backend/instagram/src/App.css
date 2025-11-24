@@ -41,22 +41,12 @@
 
 .phone-screen {
   position: absolute;
-  right: 62px;
+  right: 100px;
   top: 27px;
-  width: 250px;
-  height: 538px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
-
-/* .phone-screen img {
-  width: 200px;
-  height: 500px;
-  object-fit: cover;
-} */
-
-/* .auth-section {
-  flex: 1;
-}  */
 
  .phone-screen img {
  

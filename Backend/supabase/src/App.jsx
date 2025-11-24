@@ -21,35 +21,18 @@ const App = () => {
     }
 
     try {
-      // 1️⃣ Upload image to Supabase
         const { data, error } = await supabase.storage
         .from("insta")
         .upload("insta_images/" + Img.name, Img, { upsert: true });
 
       if (error) throw error;
 
-      // 2️⃣ Get public URL
-      const imageUrl = `${supabaseUrl}/storage/v1/object/public/insta/insta_images/${Img.name}`;
-      console.log("Image URL:", imageUrl);
-    
-      // 3️⃣ Send metadata to backend
-  //    await axios.post(
-  // "http://localhost:4001/upload",
-  // {
-  //   name: Img.name,
-  //   ImgUrl: imageUrl,
-  //   user: localStorage.getItem("userEmail")
-  // },
-  // {
-  //   headers: {
-  //     Authorization: `Bearer ${localStorage.getItem("token")}`
-  //   }
-  // }
-//  );
+      
+      const imgUrl = `${supabaseUrl}/storage/v1/object/public/insta/insta_images/${Img.name}`;
+      console.log("Image URL:", imgUrl);
 
-
-//       alert("✅ Image uploaded and saved successfully!");
-//       setImg(null);
+     await axios.post("http://localhost:4000/upload",{imgUrl})
+     setImg(null);
     } catch (err) {
        console.error("❌ Upload failed:", err);
       alert("Error uploading image. Check console for details.");

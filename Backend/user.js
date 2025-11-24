@@ -11,11 +11,11 @@ let userSchema= mongoose.Schema({
     passWord:{
         type:String
     },
-    role:{
-        type:String,
-        enum:['admin','student','instructor'],
-        default:'student'
-    },
+    // role:{
+    //     type:String,
+    //     enum:['admin','student','instructor'],
+    //     default:'student'
+    // },
     fullName:{
          type:String
     },

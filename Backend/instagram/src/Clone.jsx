@@ -25,27 +25,6 @@ const Clone = () => {
           </div>
 
           <div className="auth-section">
-            {/* <div className="page-switcher"> */}
-              {/* <button 
-                className={currentPage === 'login' ? 'active' : ''}
-                onClick={() => setCurrentPage('login')}
-              >
-                Login
-              </button> */}
-              
-              {/* <button 
-                className={currentPage === 'signup' ? 'active' : ''}
-                onClick={() => setCurrentPage('signup')}
-              >
-                Sign Up
-              </button>
-              <button 
-                className={currentPage === 'forget' ? 'active' : ''}
-                onClick={() => setCurrentPage('forget')}
-              >
-                Forgot
-              </button> */}
-            {/* </div> */}
 
             {currentPage === 'login' && <Login />}
             {currentPage === 'signup' && <Signup />}
