@@ -28,5 +28,11 @@ print(my_dict)
 my_dict['degree']='B.teach'
 print(my_dict)
 
+# pop
 my_dict.popitem()
 print(my_dict)
+
+# we can also perform operations on the key value pairs
+d={'a':1,'b':2,'c':3,'d':4,'e':5}
+d={k+'c':v*2 for k,v in d.items() if v>2}
+print(d)
