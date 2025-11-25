@@ -12,7 +12,12 @@ let uploadSchema = mongoose.Schema({
     likeCount:{
         type:Number,
         default:0
-    }
+    },
+     user: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",   // reference to user model
+        required: true
+    }]
 })
  
  let Upload=mongoose.model('Upload',uploadSchema)

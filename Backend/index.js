@@ -93,6 +93,7 @@ then(()=>{
    res.send("hello")
    
 })
+
 //  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
 //  then(()=>{
 //     console.log("db conneted...");
@@ -223,7 +224,7 @@ app.post('/create',  async(req,res)=>{
             userName,
             email,
             passWord:updatedP,
-            // role:role||'user',
+            role:role||'user',
             fullName
          })
               await userData.save()
@@ -350,18 +351,42 @@ const crypto = require('crypto');//reset email password
 });
 
 
- // image upload code
-app.post('/upload',async(req,res)=>{
-   let{imgUrl}=req.body
-   if(!imgUrl){
-    return res.send("not found url.....")
-   }
-   let uploadD=new Upload({
-    imgUrl
+
+//
+
+
+
+function auth(req, res, next) {
+    const token = req.headers.authorization;
+    // console.log("hello",token);
+    if (!token) return res.status(401).json({ message: "Login first!" });
+    
+    try {
+       const decoded = jwt.verify(token, "JHBFIUWBFIUWB");
+       req.user = decoded;   // IMPORTANT: req.user yahi se aata hai
+       console.log("decoded",decoded);
+       next();
+      } catch (err) {
+         return res.status(401).json({ message: "Invalid token" });
+      }
+   };
+   
+   // image upload code
+   app.post('/upload',auth,async(req,res)=>{
+     let{imgUrl}=req.body
+     if(!imgUrl){
+      return res.send("not found url.....")
+     }
+     let uploadD=new Upload({
+      imgUrl
+     })
+     await uploadD.save()
+     return res.send("upload urllll");
    })
-   await uploadD.save()
-   return res.send("upload urllll");
-})
+
+
+
+
   
   
  app.listen(4000,()=>{
