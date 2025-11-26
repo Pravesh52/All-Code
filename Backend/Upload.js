@@ -17,7 +17,11 @@ let uploadSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",   // reference to user model
         required: true
-    }]
+    }],
+    likedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+     }]
 })
  
  let Upload=mongoose.model('Upload',uploadSchema)

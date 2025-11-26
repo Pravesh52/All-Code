@@ -247,7 +247,7 @@ app.post('/create',  async(req,res)=>{
        }else{
         let validPass=   await bcrypt.compare(passWord,userInfo.passWord,)
         if(validPass){
-         let token = jwt.sign({  email: userInfo.email, role: userInfo.role }, "JHBFIUWBFIUWB");
+         let token = jwt.sign({_id:userInfo._id, email: userInfo.email, role: userInfo.role }, "JHBFIUWBFIUWB");
          console.log(token,"tokennnnn");
          
          res.status(200).send("login ho gyaa")
@@ -373,20 +373,85 @@ function auth(req, res, next) {
    
    // image upload code
    app.post('/upload',auth,async(req,res)=>{
+      const userId=req.user._id;
      let{imgUrl}=req.body
      if(!imgUrl){
       return res.send("not found url.....")
      }
      let uploadD=new Upload({
-      imgUrl
+      imgUrl,
+      user:userId,
+      likedBy:[]
      })
      await uploadD.save()
      return res.send("upload urllll");
    })
 
+   app.post('/like/:id',auth,async(req,res)=>{
+      try{
+       const postId = req.params.id;
+       const userId = req.user._id;
 
+        console.log("POST ID:", postId);
+        console.log("USER ID:", userId);
+// User id missing?
+        if(!userId)
+        {
+           return res.status(400).json({ success: false, message: "User not authenticated" });
+        }
+        // Find post
 
+        const post = await Upload.findById(postId);
 
+         if (!post) {
+             return res.status(404).json({ success: false, message: "Post not found" });
+         }
+
+          post.likedBy = post.likedBy.filter(id => id !== null);
+
+          const alreadyLiked=post.likedBy.some(
+            id=>id.toString()===userId.toString()
+          );
+
+           // -------------------------------
+    // 🔴 IF ALREADY LIKED → UNLIKE
+    // -------------------------------
+    if (alreadyLiked) {
+      post.likedBy = post.likedBy.filter(
+        id => id && id.toString() !== userId.toString()
+      );
+
+      post.likeCount = Math.max(post.likeCount - 1, 0);
+
+      await post.save();
+
+      return res.json({
+        success: true,
+        message: "Like removed",
+        likeCount: post.likeCount
+      });
+    }
+
+     // -------------------------------
+    // 🟢 IF NOT LIKED → LIKE
+    // -------------------------------
+    post.likedBy.push(userId);
+    post.likeCount += 1;
+
+    await post.save();
+
+    return res.json({
+      success: true,
+      message: "Like added",
+      likeCount: post.likeCount
+    });
+
+  } catch (err) {
+    console.log("LIKE API ERROR:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+      
   
   
  app.listen(4000,()=>{
