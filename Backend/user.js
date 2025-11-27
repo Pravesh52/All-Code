@@ -19,6 +19,16 @@ let userSchema= mongoose.Schema({
     fullName:{
          type:String
     },
+    following:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        
+    }],
+    followers:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        
+    }],
     resetToken: String,
   resetTokenExpiry: Date,
 }) 

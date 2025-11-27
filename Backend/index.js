@@ -451,6 +451,47 @@ function auth(req, res, next) {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
+app.post('/follow/:id',auth,async(req,res)=>{
+    let targetUserId=req.params.id;
+    let currentUserId=req.user._id
+    if(targetUserId==currentUserId)
+    {
+      res.json({msg:"nashe kam karo thoda...."})
+    }
+    let targetUser=await User.findById(targetUserId)
+    let currentUser=await User.findById(currentUserId)
+
+    if(!currentUser || !targetUser){
+      res.send("user not found")
+    }
+//unfollow code
+    let alreadyFollow=currentUser.following.includes(targetUserId)
+    if(alreadyFollow){
+      currentUser.following=currentUser.following.filter((id)=>{
+        return id.toString()!=targetUserId.toString()
+      })
+
+      targetUser.followers=targetUser.followers.filter((id)=>{
+        return id.toString()!=currentUserId.toString()
+      })
+
+       await currentUser.save()
+      await targetUser.save()
+
+      return res.json({
+      success: true,
+      msg: "Unfollowed successfully"
+    });
+    }
+    //follower code
+    currentUser.following.push(targetUserId)
+    targetUser.followers.push(currentUserId)
+    await currentUser.save()
+    await targetUser.save()
+    res.json({msg:"followed Success......."})
+
+})
       
   
   
