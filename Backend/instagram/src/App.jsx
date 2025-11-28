@@ -6,7 +6,6 @@ import Login from './Login'
 import ForgetPassword from './ForgetPassword'
 import Reset from './Reset'
 import Home from './Home'
-
 const App = () => {
   return (
     <div>

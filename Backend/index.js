@@ -234,30 +234,51 @@ app.post('/create',  async(req,res)=>{
             
  })
 
-//Login2
+// login 3
 
- app.post("/login",async(req,res)=>{
-    let {email,passWord}=   req.body
-    console.log(email,passWord);
-    
-       let userInfo=    await User.findOne({email})
-       console.log(userInfo,"kyaa milegaaaaaaaa");
-       
-       if(!userInfo){
-         res.send("user not found")
-       }else{
-        let validPass=   await bcrypt.compare(passWord,userInfo.passWord,)
-        if(validPass){
-         let token = jwt.sign({_id:userInfo._id, email: userInfo.email, role: userInfo.role }, "JHBFIUWBFIUWB");
-         console.log(token,"tokennnnn");
-         
-         res.status(200).send("login ho gyaa")
-        }else{
-         res.send("pass sahi nhi haiiii")
-        }
-       }
-        
- })
+app.post("/login", async (req, res) => {
+  let { email, passWord } = req.body;
+
+  try {
+    let userInfo = await User.findOne({ email });
+
+    if (!userInfo) {
+      return res.status(400).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    let validPass = await bcrypt.compare(passWord, userInfo.passWord);
+
+    if (!validPass) {
+      return res.status(401).json({
+        success: false,
+        message: "Incorrect password"
+      });
+    }
+
+    let token = jwt.sign(
+      { _id: userInfo._id, email: userInfo.email, role: userInfo.role },
+      "JHBFIUWBFIUWB",
+      { expiresIn: "1d" }
+    );
+
+   return res.status(200).json({
+      success: true,
+      token: token
+    });
+
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error"
+    });
+  }
+});
+
+
 //check role
 
 function checkRole(role){

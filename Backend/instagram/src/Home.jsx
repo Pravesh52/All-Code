@@ -1,8 +1,26 @@
 import React, { useState } from 'react';
-import { Home, Search, Film, MessageCircle, Heart, PlusSquare, User, Menu, Settings, Bookmark, Moon, AlertCircle, BarChart2, Clock } from 'lucide-react';
+import {
+  Home,
+  Search,
+  Film,
+  MessageCircle,
+  Heart,
+  PlusSquare,
+  User,
+  Menu,
+  Settings,
+  Bookmark,
+  Moon,
+  AlertCircle,
+  BarChart2,
+  Clock
+} from 'lucide-react';
+
 import './Home.css';
+import SearchBox from "./Search";   // <-- Rename for clarity
 
 const InstagramClone = () => {
+  const [openSearch, setOpenSearch] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
 
   return (
@@ -21,7 +39,10 @@ const InstagramClone = () => {
             <span>Home</span>
           </button>
 
-          <button className="nav-item">
+          <button
+            className="nav-item"
+            onClick={() => setOpenSearch(true)}
+          >
             <Search size={28} />
             <span>Search</span>
           </button>
@@ -70,6 +91,7 @@ const InstagramClone = () => {
 
           {showMoreMenu && (
             <div className="more-menu">
+
               <button className="more-menu-item">
                 <Settings size={24} />
                 <span>Settings</span>
@@ -111,11 +133,17 @@ const InstagramClone = () => {
               <button className="more-menu-item">
                 <span>Log out</span>
               </button>
+
             </div>
           )}
 
         </div>
       </div>
+
+      {/* Search Box Open */}
+      {openSearch && (
+        <SearchBox closeSearch={() => setOpenSearch(false)} />
+      )}
 
       {/* Main Content */}
       <div className="content-area"></div>
