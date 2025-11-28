@@ -26,7 +26,6 @@ const Search = ({ closeSearch }) => {
 
   return (
     <>
-      {/* DARK BACKGROUND (click closes search) */}
       <div className="search-overlay" onClick={closeSearch}></div>
 
       {/* LEFT SLIDE PANEL */}
