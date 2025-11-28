@@ -80,6 +80,7 @@ let jwt=    require('jsonwebtoken')
  app.use(cors())
  app.use(express.json())
  let Upload=require('./Upload')
+ let Comment = require('./comment');
 
  //Database connect karne ke liye
 //  mongoose.connect("mongodb://127.0.0.1:27017/5thSem").
@@ -492,6 +493,103 @@ app.post('/follow/:id',auth,async(req,res)=>{
     res.json({msg:"followed Success......."})
 
 })
+
+//search
+app.post("/search",async(req,res)=>{
+     let query= req.query.q
+
+     if(!query)
+     {
+      return res.send("query not found")
+     }
+
+     let isMatch=await User.find
+     ({
+        $or:[
+          {name:{$regex:query,$options:"i"}},
+          {email:{$regex:query,$options:"i"}}
+        ]
+     })
+     .select("-passWord")
+     .limit(4)
+
+     res.json({msg: isMatch})
+
+})
+
+//Comment
+
+app.post('/comment/:postId', auth, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.user._id;
+    const { text } = req.body;
+
+    if (!text) {
+      return res.status(400).json({ success: false, message: "Comment text required" });
+    }
+
+    // Create comment
+    const newComment = new Comment({
+      postId,
+      userId,
+      text
+    });
+
+    await newComment.save();
+
+    // Add to post
+    await Upload.findByIdAndUpdate(postId, {
+      $push: { comments: newComment._id }
+    });
+
+    res.json({
+      success: true,
+      message: "Comment added",
+      comment: newComment
+    });
+
+  } catch (err) {
+    console.log("ADD COMMENT ERROR:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+//delete the comment
+app.delete("/comment/:commentId", auth, async (req, res) => {
+  try {
+    const commentId = req.params.commentId;
+    const userId = req.user._id;
+
+    const comment = await Comment.findById(commentId);
+
+    if (!comment) {
+      return res.status(404).json({ success: false, message: "Comment not found" });
+    }
+
+    // Check owner
+    if (comment.userId.toString() !== userId.toString()) {
+      return res.status(403).json({ success: false, message: "Not allowed" });
+    }
+
+    // Remove comment from comment collection
+    await Comment.findByIdAndDelete(commentId);
+
+    // Remove comment id from post
+    await Upload.findByIdAndUpdate(comment.postId, {
+      $pull: { comments: commentId }
+    });
+
+    res.json({ success: true, message: "Comment deleted" });
+
+  } catch (err) {
+    console.log("DELETE COMMENT ERROR:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
+
       
   
   
