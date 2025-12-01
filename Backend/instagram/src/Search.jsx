@@ -1,4 +1,4 @@
-// Search.jsx
+
 import React, { useState } from "react";
 import axios from "axios";
 import "./Search.css";
@@ -7,7 +7,6 @@ const Search = ({ closeSearch }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
-  // 🔍 SEARCH API CALL
   const handleSearch = async (value) => {
     setQuery(value);
 
@@ -17,7 +16,7 @@ const Search = ({ closeSearch }) => {
     }
 
     try {
-      let res = await axios.get(`http://localhost:8000/search?q=${value}`);
+      let res = await axios.post(`http://localhost:4000/search?q=${value}`);
       setResults(res.data.msg);
     } catch (err) {
       console.error(err);

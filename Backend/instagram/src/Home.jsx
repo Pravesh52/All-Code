@@ -18,10 +18,13 @@ import {
 
 import './Home.css';
 import SearchBox from "./Search";   // <-- Rename for clarity
+import UploadPhoto from "./Uploadphoto";
 
 const InstagramClone = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+
 
   return (
     <div className="main-container">
@@ -67,10 +70,13 @@ const InstagramClone = () => {
             <span>Notifications</span>
           </button>
 
-          <button className="nav-item">
-            <PlusSquare size={28} />
-            <span>Create</span>
+          <button className="nav-item" onClick={() => setOpen(true)}>
+          <PlusSquare size={28} />
+           <span>Create</span>
           </button>
+
+      {/* Upload component */}
+      {open && <UploadPhoto closeUpload={() => setOpen(false)} />}
 
           <button className="nav-item">
             <User size={28} />

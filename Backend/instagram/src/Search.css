@@ -39,6 +39,7 @@
 .search-panel h2 {
   font-size: 24px;
   font-weight: 600;
+  
 }
 
 .search-panel input {
@@ -48,8 +49,9 @@
   border-radius: 8px;
   padding: 0 15px;
   font-size: 15px;
+  
   border: 1px solid #1a1818;
-  background: #4c3f3f;
+  background: #8a8181;
 }
 
 .divider {
@@ -83,7 +85,7 @@
 }
 
 .search-item:hover {
-  background: #f5f5f5;
+  background: #4d4343;
 }
 
 .info {

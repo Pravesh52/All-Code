@@ -1,0 +1,113 @@
+/* -------- FULL SCREEN DARK OVERLAY (Instagram style) -------- */
+.upload-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* -------- CENTER WHITE MODAL -------- */
+.upload-box {
+  width: 380px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+/* -------- INSTAGRAM TOP BAR (Select photo) -------- */
+.upload-header {
+  padding: 12px;
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* -------- MIDDLE AREA (choose image area) -------- */
+.upload-body {
+  padding: 25px;
+  text-align: center;
+}
+
+/* Big image icon look (like Instagram placeholder) */
+.upload-body .placeholder {
+  font-size: 70px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+/* "Select from computer" button (Instagram style) */
+.select-btn {
+  background: #0095f6;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* -------- PREVIEW IMAGE -------- */
+.preview-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+/* -------- FOOTER BUTTONS (POST + CANCEL) -------- */
+.upload-footer {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.post-btn {
+  flex: 1;
+  padding: 10px 0;
+  background: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 10px 0;
+  background: #efefef;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Hover effects */
+.post-btn:hover {
+  background: #007ad1;
+}
+
+.cancel-btn:hover {
+  background: #dcdcdc;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
