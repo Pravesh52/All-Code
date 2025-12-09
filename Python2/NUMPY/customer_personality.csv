@@ -1,0 +1,6 @@
+ID,Year_Birth,Education,Marital_Status,Income,Dt_Customer,Kidhome,Teenhome,Recency
+5524,1957.0,Graduation,Single,58138.0,2012-09-04,0,0,58
+2174,1954.0,Graduation,Single,46344.0,2014/03/08,1,1,38
+4141,,2n Cycle,Married,71613.0,2013-08-21,0,0,26
+6182,1981.0,Graduation,Divorced,,14-02-2014,0,1,26
+5324,1988.0,Basic,Single,41134.0,08/10/2013,1,0,94
