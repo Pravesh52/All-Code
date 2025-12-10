@@ -6,6 +6,8 @@ import Login from './Login'
 import ForgetPassword from './ForgetPassword'
 import Reset from './Reset'
 import Home from './Home'
+import { Upload } from 'lucide-react'
+import UploadPhoto from './Uploadphoto'
 const App = () => {
   return (
     <div>
@@ -16,6 +18,7 @@ const App = () => {
         <Route path='/forgetPassword' element={<ForgetPassword/>}></Route>
          {/* <Route path='/reset-password' element={<Reset/>}></Route> */}
          <Route path="/reset/:token" element={<Reset />} />
+         <Route path="/upload" element={<UploadPhoto/>}></Route>
           
       </Routes>
     </div>

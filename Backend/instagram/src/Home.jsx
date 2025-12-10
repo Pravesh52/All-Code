@@ -13,12 +13,16 @@ import {
   Moon,
   AlertCircle,
   BarChart2,
-  Clock
+  Clock,
+  
 } from 'lucide-react';
 
 import './Home.css';
 import SearchBox from "./Search";   // <-- Rename for clarity
 import UploadPhoto from "./Uploadphoto";
+import { Link } from 'react-router-dom';
+
+
 
 const InstagramClone = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -70,10 +74,13 @@ const InstagramClone = () => {
             <span>Notifications</span>
           </button>
 
-          <button className="nav-item" onClick={() => setOpen(true)}>
+          <Link to="/upload">
+          <button className="nav-item">
           <PlusSquare size={28} />
+          
            <span>Create</span>
           </button>
+          </Link>
 
       {/* Upload component */}
       {open && <UploadPhoto closeUpload={() => setOpen(false)} />}

@@ -263,6 +263,7 @@ app.post("/login", async (req, res) => {
       "JHBFIUWBFIUWB",
       { expiresIn: "1d" }
     );
+    
 
    return res.status(200).json({
       success: true,
@@ -275,6 +276,7 @@ app.post("/login", async (req, res) => {
       success: false,
       message: "Server error"
     });
+    
   }
 });
 
@@ -394,6 +396,8 @@ function auth(req, res, next) {
    };
    
    // image upload code
+   
+
    app.post('/upload',auth,async(req,res)=>{
       const userId=req.user._id;
      let{imgUrl}=req.body
@@ -408,6 +412,16 @@ function auth(req, res, next) {
      await uploadD.save()
      return res.send("upload urllll");
    })
+
+   app.get("/upload",async(req,res)=>{
+      try{
+        const images=await Upload.find();
+        res.json(images);
+      }catch(err){
+        console.error("error fetching images:",err.message);
+        return res.status(500).json({msg:"Error fetching images",error:err.message})
+      }
+   });
 
    app.post('/like/:id',auth,async(req,res)=>{
       try{
