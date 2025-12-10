@@ -412,16 +412,32 @@ function auth(req, res, next) {
      await uploadD.save()
      return res.send("upload urllll");
    })
+//ye raha rupesh sir ka code
 
-   app.get("/upload",async(req,res)=>{
-      try{
-        const images=await Upload.find();
-        res.json(images);
-      }catch(err){
-        console.error("error fetching images:",err.message);
-        return res.status(500).json({msg:"Error fetching images",error:err.message})
-      }
-   });
+  //  app.get("/upload",async(req,res)=>{
+  //     try{
+  //       const images=await Upload.find();
+  //       res.json(images);
+  //     }catch(err){
+  //       console.error("error fetching images:",err.message);
+  //       return res.status(500).json({msg:"Error fetching images",error:err.message})
+  //     }
+  //  });
+
+//chatgpt code
+   app.get("/getAllPosts", async (req, res) => {
+  try {
+    const images = await Upload.find().sort({ createdAt: -1 }); // latest first
+    res.json(images);
+  } catch (err) {
+    console.error("error fetching images:", err.message);
+    return res.status(500).json({
+      msg: "Error fetching images",
+      error: err.message,
+    });
+  }
+});
+
 
    app.post('/like/:id',auth,async(req,res)=>{
       try{
