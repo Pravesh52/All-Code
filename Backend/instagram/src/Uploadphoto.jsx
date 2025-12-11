@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Upload, X, Check, Camera, Loader, Image } from 'lucide-react';
 import './UploadPhoto.css';
@@ -10,15 +11,12 @@ const supabaseKey =
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const UploadPhoto = () => {
+const UploadPhoto = ({ closeUpload, onUploaded }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  // ----------------------------
-  // FILE CHANGE
-  // ----------------------------
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -41,9 +39,6 @@ const UploadPhoto = () => {
     reader.readAsDataURL(file);
   };
 
-  // ----------------------------
-  // UPLOAD FUNCTION (FIXED)
-  // ----------------------------
   const handleUpload = async () => {
     if (!selectedFile) {
       setMessage({ text: 'Please select an image first!', type: 'error' });
@@ -57,9 +52,6 @@ const UploadPhoto = () => {
       const timestamp = Date.now();
       const filename = `${timestamp}_${selectedFile.name}`;
 
-      // ----------------------------
-      // UPLOAD TO SUPABASE
-      // ----------------------------
       const { error } = await supabase.storage
         .from('insta')
         .upload(`insta_images/${filename}`, selectedFile, { upsert: true });
@@ -69,9 +61,7 @@ const UploadPhoto = () => {
       const imgUrl = `${supabaseUrl}/storage/v1/object/public/insta/insta_images/${filename}`;
       console.log("Image URL:", imgUrl);
 
-      // ----------------------------
-      // SEND TO BACKEND
-      // ----------------------------
+      // send to backend
       const token = localStorage.getItem("token");
 
       const backendResponse = await axios.post(
@@ -84,11 +74,19 @@ const UploadPhoto = () => {
 
       setMessage({ text: "Photo uploaded successfully! 🎉", type: "success" });
 
+      // Inform parent (Home) about the new post.
+      // If backend returns the created post object, pass that; else pass imgUrl
+      const returnedPost = backendResponse.data || { imgUrl };
+      if (onUploaded) onUploaded(returnedPost);
+
+      // small delay for UI
       setTimeout(() => {
         setSelectedFile(null);
         setPreview('');
         setMessage({ text: '', type: '' });
-      }, 2000);
+        // optionally close
+        if (closeUpload) closeUpload();
+      }, 800);
 
     } catch (err) {
       console.error("❌ Upload failed:", err);
@@ -107,7 +105,6 @@ const UploadPhoto = () => {
   return (
     <div className="upload-container">
       <div className="upload-card">
-
         <div className="upload-header">
           <div className="header-content">
             <Camera className="header-icon" />

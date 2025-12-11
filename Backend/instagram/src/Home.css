@@ -69,7 +69,6 @@
   margin-top: auto;
 }
 
-/* More Menu Dropdown */
 .more-menu {
   position: absolute;
   bottom: 100%;
@@ -113,4 +112,132 @@
   margin-left: 250px;
   overflow-y: auto;
   background-color: #000000;
+}
+
+/* ---- Feed ---- */
+.feed-header {
+  padding: 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.feed-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* POSTS — SINGLE COLUMN FEED */
+.posts-grid {
+  display: flex;
+  flex-direction: column;   /* 👈 ek ke neeche ek posts */
+  gap: 25px;
+  padding: 20px;
+  align-items: center;       /* center aligned posts */
+}
+
+
+
+
+
+/* Each Post Container */
+.post-card {
+  width: 100%;
+  max-width: 420px;          
+  background-color: #0b0b0b;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Image Wrapper */
+.post-image-wrapper {
+ 
+  aspect-ratio: 1/1;        /* square post */
+  overflow: hidden;
+  background: #111;
+  width: 90%;
+  margin: auto;
+  
+}
+
+/* Actual Image */
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Post Footer Info */
+.post-meta {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #d0d0d0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Loading / Empty */
+.loading-text,
+.empty-text {
+  padding: 40px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* Upload Overlay */
+.upload-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+  z-index: 1200;
+  padding: 20px;
+}
+
+.upload-panel {
+  width: min(940px, 98%);
+  background: transparent;
+  border-radius: 12px;
+}
+
+/* Close Button */
+.close-upload {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1300;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  .content-area {
+    margin-left: 200px;
+  }
+  .post-card {
+    max-width: 100%; /* full width on mobile */
+  }
+  .close-upload {
+    right: 10px;
+  }
 }

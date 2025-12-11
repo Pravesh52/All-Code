@@ -425,6 +425,7 @@ function auth(req, res, next) {
   //  });
 
 //chatgpt code
+
    app.get("/getAllPosts", async (req, res) => {
   try {
     const images = await Upload.find().sort({ createdAt: -1 }); // latest first
@@ -437,6 +438,48 @@ function auth(req, res, next) {
     });
   }
 });
+
+//Profile code
+
+app.get("/profile", auth, async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId)
+      .select("-passWord -resetToken -resetTokenExpiry")
+      .populate("followers", "userName")
+      .populate("following", "userName");
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    return res.json(user);
+
+  } catch (err) {
+    console.log("PROFILE API ERROR:", err);
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+//all post in profile
+
+app.get("/user-posts/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const posts = await Upload.find({ user: userId })
+      .sort({ createdAt: -1 });
+
+    res.json(posts);
+
+  } catch (err) {
+    console.log("USER POSTS API ERROR:", err);
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+
 
 
    app.post('/like/:id',auth,async(req,res)=>{
