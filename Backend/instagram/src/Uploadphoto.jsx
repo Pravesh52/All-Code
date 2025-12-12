@@ -196,3 +196,4 @@ const UploadPhoto = ({ closeUpload, onUploaded }) => {
 };
 
 export default UploadPhoto;
+

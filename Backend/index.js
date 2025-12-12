@@ -428,7 +428,7 @@ function auth(req, res, next) {
 
    app.get("/getAllPosts", async (req, res) => {
   try {
-    const images = await Upload.find().sort({ createdAt: -1 }); // latest first
+    const images = await Upload.find().populate('user', 'userName').sort({ createdAt: -1 }); // latest first
     res.json(images);
   } catch (err) {
     console.error("error fetching images:", err.message);
