@@ -216,7 +216,7 @@ export default function StudentRoadmap() {
       {/* Header */}
       <header className="header">
         <div className="container">
-          <h1 className="main-title">Student Roadmap - 4 Years</h1>
+          <h1 className="main-title">Student Placement Roadmap - 4 Years</h1>
           <p className="author">by Pravesh Tiwari</p>
           <p className="subtitle">A Comprehensive 4-Year Journey from Foundation to Placement</p>
         </div>
@@ -377,6 +377,14 @@ export default function StudentRoadmap() {
       <div className="connect-info">
         <h4>Github</h4>
         <p>@Pravesh52</p>
+      </div>
+    </a>
+
+    <a href="https://pravesh52.github.io/Pravesh-Portfolio/" target="_blank" rel="noopener noreferrer" className="connect-card">
+      <div className="connect-icon">🕸️</div>
+      <div className="connect-info">
+        <h4>Portfolio</h4>
+        <p>Pravesh Tiwari</p>
       </div>
     </a>
 
